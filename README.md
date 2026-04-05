@@ -125,13 +125,10 @@ Use this space to show useful examples of how a project can be used. Additional 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [ ] gui page
+- [ ] multimedia
+- [ ] Internet connect to others
+
 
 See the [open issues](https://github.com/promise-157-157/imx6ull_lab/issues) for a full list of proposed features (and known issues).
 
