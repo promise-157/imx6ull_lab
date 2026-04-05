@@ -12,7 +12,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/promise-157-157/myblog">
+  <a href="https://github.com/promise-157/imx6ull_lab">
     <img src="images/userimage.jpg" alt="Logo" width="80" height="80">
   </a>
 
@@ -21,14 +21,14 @@
   <p align="center">
     project introduce
     <br />
-    <a href="https://github.com/promise-157-157/myblog"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/promise-157/imx6ull_lab"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/promise-157-157/myblog">View Demo</a>
+    <a href="https://github.com/promise-157/imx6ull_lab">View Demo</a>
     &middot;
-    <a href="https://github.com/promise-157-157/myblog/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/promise-157/imx6ull_lab/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/promise-157-157/myblog/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/promise-157/imx6ull_lab/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -53,27 +53,12 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-参考模板工程，包含readme，changelog，license，issue(bug/request)，等模板，其中较为陌生的是.idea文件夹。
->下面的内容由ai生成，仅作参考
-里面的文件属于JetBrains IDE配置体系的。codeStyleConfig.xml是代码风格，写好这个作业项目的人员代码风格才能统一。Best-README-Template.iml是模块说明文件，每个模块一个。modules.xml是项目级的模块，总览。vcs.xml表示采用了哪种配置版本控制系统，一般是git。  
-这里我想在模板里突兀的提一下，变量引用（$MODULE_DIR$、$PROJECT_DIR$）的重要性。使用相对路径有时候的重要性和使用模板一样可以减少很多不必要的麻烦。
->由于我比较常用vscode，因此在原仓库的基础上增加了vscode的模板介绍。
-1. .vscode 配置文件定义，自动生成的，所以这里只做介绍含义。
-如果你已经有代码了，想让它“变成”一个标准的 VS Code 工程，核心在于创建 .vscode 文件夹。
-- c_cpp_properties.json:C/C++专属的配置文件，用于设置代码补全，文件路径问题等。打开vscode指令窗口搜索Edit Configurations即可。
-- settings.json：项目专属设置（如缩进、格式化规则）。Ctrl + ,修改你的工程属性就会自动生成了。
-- tasks.json：定义编译指令（如 g++ main.cpp 或 npm run build）。点击终端，点击配置任务即可。
-- launch.json：定义调试配置（按下**F5** 后如何运行），点击左侧运行和调试按键即可。  
-- extensions.json：相当于python里的requirement，对方打开后会自动下载对应插件。把想要添加的插件勾选添加到工作区建议。即可自动生成。
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,8 +80,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
@@ -137,8 +120,6 @@ _Below is an example of how you can instruct your audience on installing and set
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -152,7 +133,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
     - [ ] Chinese
     - [ ] Spanish
 
-See the [open issues](https://github.com/promise-157-157/myblog/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/promise-157-157/imx6ull_lab/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -170,64 +151,32 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Top contributors:
-
-<a href="https://github.com/promise-157-157/myblog/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=promise-157-157/myblog" alt="contrib.rocks image" />
-</a>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the Unlicense License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/promise-157/myblog.svg?style=for-the-badge
-[contributors-url]: https://github.com/promise-157/myblog/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/promise-157/myblog.svg?style=for-the-badge
-[forks-url]: https://github.com/promise-157/myblog/network/members
-[stars-shield]: https://img.shields.io/github/stars/promise-157/myblog.svg?style=for-the-badge
-[stars-url]: https://github.com/promise-157/myblog/stargazers
-[issues-shield]: https://img.shields.io/github/issues/promise-157/myblog.svg?style=for-the-badge
-[issues-url]: https://github.com/promise-157/myblog/issues
-[license-shield]: https://img.shields.io/github/license/promise-157/myblog.svg?style=for-the-badge
-[license-url]: https://github.com/promise-157/myblog/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/promise-157/imx6ull_lab.svg?style=for-the-badge
+[contributors-url]: https://github.com/promise-157/imx6ull_lab/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/promise-157/imx6ull_lab.svg?style=for-the-badge
+[forks-url]: https://github.com/promise-157/imx6ull_lab/network/members
+[stars-shield]: https://img.shields.io/github/stars/promise-157/imx6ull_lab.svg?style=for-the-badge
+[stars-url]: https://github.com/promise-157/imx6ull_lab/stargazers
+[issues-shield]: https://img.shields.io/github/issues/promise-157/imx6ull_lab.svg?style=for-the-badge
+[issues-url]: https://github.com/promise-157/imx6ull_lab/issues
+[license-shield]: https://img.shields.io/github/license/promise-157/imx6ull_lab.svg?style=for-the-badge
+[license-url]: https://github.com/promise-157/imx6ull_lab/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/promise-157
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
