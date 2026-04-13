@@ -1,0 +1,24 @@
+# ninja log v7
+5	178	1776071397408666272	CMakeFiles/MyQtApp_autogen	766d6abc77144a79
+5	178	1776071397408666272	MyQtApp_autogen/mocs_compilation.cpp	766d6abc77144a79
+232	248	1775996200591822089	MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp	c82d297713284981
+250	279	1775996200595822089	CMakeFiles/MyQtApp.dir/MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp.o	e14e3384d78e467d
+178	1640	1776071397584666280	CMakeFiles/MyQtApp.dir/MyQtApp_autogen/mocs_compilation.cpp.o	7cfdff834d7fa997
+178	1727	1776071397584666280	CMakeFiles/MyQtApp.dir/src/main.cpp.o	a617035df5724aec
+179	1820	1776071397584666280	CMakeFiles/MyQtApp.dir/src/mainwindow.cpp.o	55b2008f4dbd4452
+1820	2265	1776071399224666346	MyQtApp	ca27676f1f163c2a
+178	1230	1776071397584666280	CMakeFiles/MyQtApp.dir/src/LogManager.cpp.o	6fb2f0e549451527
+4	166	1776071973580667015	CMakeFiles/MyQtApp_autogen	766d6abc77144a79
+4	166	1776071973580667015	MyQtApp_autogen/mocs_compilation.cpp	766d6abc77144a79
+166	1145	1776071973744667015	CMakeFiles/MyQtApp.dir/src/LogManager.cpp.o	6fb2f0e549451527
+166	1594	1776071973744667015	CMakeFiles/MyQtApp.dir/MyQtApp_autogen/mocs_compilation.cpp.o	7cfdff834d7fa997
+167	1641	1776071973744667015	CMakeFiles/MyQtApp.dir/src/main.cpp.o	a617035df5724aec
+167	1751	1776071973744667015	CMakeFiles/MyQtApp.dir/src/mainwindow.cpp.o	55b2008f4dbd4452
+1751	2181	1776071975328667014	MyQtApp	ca27676f1f163c2a
+4	166	1776072212676666000	CMakeFiles/MyQtApp_autogen	766d6abc77144a79
+4	166	1776072212676666000	MyQtApp_autogen/mocs_compilation.cpp	766d6abc77144a79
+167	1261	1776072212840666003	CMakeFiles/MyQtApp.dir/src/LogManager.cpp.o	6fb2f0e549451527
+166	1608	1776072212840666003	CMakeFiles/MyQtApp.dir/MyQtApp_autogen/mocs_compilation.cpp.o	7cfdff834d7fa997
+167	1674	1776072212840666003	CMakeFiles/MyQtApp.dir/src/main.cpp.o	a617035df5724aec
+167	1783	1776072212840666003	CMakeFiles/MyQtApp.dir/src/mainwindow.cpp.o	55b2008f4dbd4452
+1783	2213	1776072214456666030	MyQtApp	ca27676f1f163c2a

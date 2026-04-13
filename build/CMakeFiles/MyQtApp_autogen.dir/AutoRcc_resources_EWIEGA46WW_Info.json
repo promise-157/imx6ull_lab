@@ -1,0 +1,19 @@
+{
+	"BUILD_DIR" : "/home/promise/imx6ull_lab/build/MyQtApp_autogen",
+	"CMAKE_BINARY_DIR" : "/home/promise/imx6ull_lab/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/promise/imx6ull_lab/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/promise/imx6ull_lab",
+	"CMAKE_SOURCE_DIR" : "/home/promise/imx6ull_lab",
+	"INCLUDE_DIR" : "/home/promise/imx6ull_lab/build/MyQtApp_autogen/include",
+	"INPUTS" : [],
+	"LOCK_FILE" : "/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/promise/imx6ull_lab/resources.qrc",
+	"VERBOSITY" : 0
+}

@@ -1,0 +1,4 @@
+/home/promise/imx6ull_lab/build/CMakeFiles/rebuild_cache.dir
+/home/promise/imx6ull_lab/build/CMakeFiles/edit_cache.dir
+/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp.dir
+/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir

@@ -1,0 +1,15 @@
+{
+    "clangd.path": "/usr/bin/clangd",
+    /* 核心：添加 clangd 启动参数 */
+    "clangd.arguments": [
+        "--compile-commands-dir=build",
+        "--query-driver=/usr/bin/gcc*,/usr/bin/g++*,/usr/lib/ccache/gcc*,/usr/lib/ccache/g++*,/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi*",
+        "--header-insertion=never",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=detailed"
+    ]
+
+
+
+}
