@@ -13,6 +13,16 @@
 			"6YEA5652QU/moc_LogManager.cpp"
 		],
 		[
+			"/home/promise/imx6ull_lab/include/MusicPage.h",
+			"MU",
+			"6YEA5652QU/moc_MusicPage.cpp"
+		],
+		[
+			"/home/promise/imx6ull_lab/include/VideoPage.h",
+			"MU",
+			"6YEA5652QU/moc_VideoPage.cpp"
+		],
+		[
 			"/home/promise/imx6ull_lab/include/mainwindow.h",
 			"MU",
 			"6YEA5652QU/moc_mainwindow.cpp"
@@ -21,7 +31,15 @@
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/home/promise/imx6ull_lab/build/MyQtApp_autogen/include",
 	"MOC_COMPILATION_FILE" : "/home/promise/imx6ull_lab/build/MyQtApp_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NETWORK_LIB", "QT_WIDGETS_LIB" ],
+	"MOC_DEFINITIONS" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_MULTIMEDIAWIDGETS_LIB",
+		"QT_MULTIMEDIA_LIB",
+		"QT_NETWORK_LIB",
+		"QT_WIDGETS_LIB"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -38,6 +56,8 @@
 		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore",
 		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++",
 		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork",
+		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia",
+		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets",
 		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include",
 		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/c++/5.3.0",
 		"/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/c++/5.3.0/arm-poky-linux-gnueabi",
@@ -69,6 +89,8 @@
 	"SOURCES" : 
 	[
 		[ "/home/promise/imx6ull_lab/src/LogManager.cpp", "MU" ],
+		[ "/home/promise/imx6ull_lab/src/MusicPage.cpp", "MU" ],
+		[ "/home/promise/imx6ull_lab/src/VideoPage.cpp", "MU" ],
 		[ "/home/promise/imx6ull_lab/src/main.cpp", "MU" ],
 		[ "/home/promise/imx6ull_lab/src/mainwindow.cpp", "MU" ]
 	],

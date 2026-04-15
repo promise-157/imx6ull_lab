@@ -1,3 +1,33 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+    <file>res/images/video/pause.png</file>
+    <file>res/images/video/handle.png</file>
+    <file>res/images/video/fullscreen.png</file>
+    <file>res/images/video/play.png</file>
+    <file>res/images/video/mask.png</file>
+    <file>res/images/video/screen.png</file>
+    <file>res/images/video/volumedown.png</file>
+    <file>res/images/video/volumeup.png</file>
+    <file>res/images/video/previous.png</file>
+    <file>res/images/video/bg.png</file>
+    <file>res/images/video/next.png</file>
+
+    <file>res/images/music/pause.png</file>
+    <file>res/images/music/sub-page.png</file>
+    <file>res/images/music/favorite_no.png</file>
+    <file>res/images/music/handle.png</file>
+    <file>res/images/music/volume.png</file>
+    <file>res/images/music/play.png</file>
+    <file>res/images/music/listcircle.png</file>
+    <file>res/images/music/menu.png</file>
+    <file>res/images/music/mask.png</file>
+    <file>res/images/music/cd.png</file>
+    <file>res/images/music/favorite_yes.png</file>
+    <file>res/images/music/previous.png</file>
+    <file>res/images/music/next.png</file>
+
+            <file>res/style/VideoPage.qss</file>
+            <file>res/style/MusicPage.qss</file>
+
+    </qresource>
 </RCC>

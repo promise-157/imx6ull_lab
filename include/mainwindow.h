@@ -9,6 +9,8 @@
 #include <QApplication>
 #include <QList>
 #include "LogManager.h"
+#include "MusicPage.h"
+#include "VideoPage.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -24,6 +26,8 @@ private:
     QStackedWidget *stack;
     QPlainTextEdit *terminalDisplay;
     LogManager *logger;
+    MusicPage *m_musicPage; // 明确持有指针
+    VideoPage *m_videoPage;
     bool m_isShifted = false;
     QList<QPushButton*> m_letterButtons;
 

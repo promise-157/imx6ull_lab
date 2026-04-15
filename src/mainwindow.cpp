@@ -11,7 +11,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     stack->addWidget(createDesktopPage());   // 0
     stack->addWidget(createTerminalPage());  // 1
-    for(int i=1; i<=4; ++i) stack->addWidget(createSimpleAppPage(QString("应用 %1").arg(i)));
+    // 增量添加新页面
+    m_musicPage = new MusicPage(this);
+    stack->addWidget(m_musicPage);           // Index 2
+    m_videoPage= new VideoPage(this);
+    stack->addWidget(m_videoPage); // Index 3
+ //   for(int i=1; i<=4; ++i) stack->addWidget(createSimpleAppPage(QString("应用 %1").arg(i)));
 
     setCentralWidget(stack);
     logger->start();
@@ -47,16 +52,27 @@ QWidget* MainWindow::createDesktopPage() {
     QWidget *page = new QWidget();
     page->setStyleSheet("background-color: #1a1a1a;");
     QVBoxLayout *layout = new QVBoxLayout(page);
-    setupTopBar(layout);
+    
+    // 桌面也要有 TopBar，这样才能从桌面点“终端”或者“退出”
+    setupTopBar(layout); 
 
     QGridLayout *grid = new QGridLayout();
     grid->setSpacing(30);
-    grid->setContentsMargins(50, 20, 50, 20);
-    for(int i=0; i<4; ++i) {
-        QPushButton *btn = new QPushButton(QString("应用 %1").arg(i+1));
+
+    // 假设你有 2 个真正的 App
+    QStringList apps = {"音乐播放器", "视频播放器"};
+
+    for(int i=0; i<apps.size(); ++i) {
+        QPushButton *btn = new QPushButton(apps[i]);
         btn->setFixedSize(160, 160);
-        btn->setStyleSheet("QPushButton { background: #2c3e50; color: white; border-radius: 20px; font-size: 20px; border: 2px solid #34495e; }");
-        connect(btn, &QPushButton::clicked, this, [this, i](){ stack->setCurrentIndex(i + 2); });
+        btn->setStyleSheet("QPushButton { background: #2c3e50; color: white; border-radius: 20px; font-size: 18px; }");
+        
+        // 跳转逻辑：
+        connect(btn, &QPushButton::clicked, this, [this, i](){
+            if(i == 0) stack->setCurrentIndex(2); // 点击音乐图标 -> 跳转到 MusicPage
+            else if(i == 1) stack->setCurrentIndex(3); // 点击视频图标 -> 跳转到 VideoPage
+        });
+        
         grid->addWidget(btn, i/2, i%2, Qt::AlignCenter);
     }
     layout->addLayout(grid);

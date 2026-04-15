@@ -55,7 +55,7 @@ set(CMAKE_AUTORCC ON)
 
 
 # --- 4. 查找 Qt 5 模块 ---
-find_package(Qt5 COMPONENTS Widgets Core Gui Network REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Core Gui Network Multimedia MultimediaWidgets REQUIRED)
 
 file(GLOB_RECURSE SOURCES 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
@@ -83,6 +83,8 @@ target_link_libraries(MyQtApp PRIVATE
     Qt5::Core 
     Qt5::Gui
     Qt5::Network
+    Qt5::Multimedia 
+    Qt5::MultimediaWidgets
 )
 
 # --- 7. 包含路径 (为了补全更精准) ---

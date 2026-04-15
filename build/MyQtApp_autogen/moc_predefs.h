@@ -93,6 +93,7 @@
 #define __FLT_EPSILON__ 1.1920928955078125e-7F
 #define __APCS_32__ 1
 #define __GXX_WEAK__ 1
+#define QT_MULTIMEDIAWIDGETS_LIB 1
 #define __USFRACT_IBIT__ 0
 #define __LDBL_MIN__ 2.2250738585072014e-308L
 #define __FRACT_MIN__ (-0.5R-0.5R)
@@ -222,6 +223,7 @@
 #define __LDBL_EPSILON__ 2.2204460492503131e-16L
 #define __UINTMAX_C(c) c ## ULL
 #define __SACCUM_MAX__ 0X7FFFP-7HK
+#define QT_MULTIMEDIA_LIB 1
 #define __SIG_ATOMIC_MAX__ 0x7fffffff
 #define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
 #define __VFP_FP__ 1
