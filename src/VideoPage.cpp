@@ -5,116 +5,268 @@
 #include <QFileDialog>
 #include <QStyle>
 #include <QFile>
+#include <QTime>
 
-VideoPage::VideoPage(QWidget *parent) : QWidget(parent) {
+VideoPage::VideoPage(QWidget *parent) : IAppModule(parent) {
     this->setObjectName("VideoPage");
-    initStyle();
+    this->setStyleSheet("background-color: #0d0d0d; color: white;");
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->setContentsMargins(0,0,0,0);
-    mainLayout->setSpacing(0);
+    QVBoxLayout *rootLayout = new QVBoxLayout(this);
+    rootLayout->setContentsMargins(0, 0, 0, 0);
+    rootLayout->setSpacing(0);
 
-    // --- 视频与控制区 ---
-    QWidget *videoContainer = new QWidget();
-    QVBoxLayout *vAreaLayout = new QVBoxLayout(videoContainer);
-    vAreaLayout->setContentsMargins(0,0,0,0);
-    vAreaLayout->setSpacing(0);
+    // ================= 顶部栏 =================
+    QWidget *topBar = new QWidget(this);
+    topBar->setObjectName("VideoTopBar");
+    topBar->setFixedHeight(50);
+    topBar->setStyleSheet("background-color: rgba(20, 20, 20, 200);");
+    QHBoxLayout *topLayout = new QHBoxLayout(topBar);
+    topLayout->setContentsMargins(10, 0, 10, 0);
 
-    m_videoWidget = new QVideoWidget();
-    m_videoWidget->setObjectName("VideoCanvas");
+    m_closeBtn = new QPushButton(topBar);
+    m_closeBtn->setFixedSize(20, 20);
+    m_closeBtn->setToolTip("彻底退出");
+    m_closeBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/close_new.png); background: transparent; }");
 
-    QWidget *controlBar = new QWidget();
-    controlBar->setObjectName("VideoControlBar");
-    controlBar->setFixedHeight(80);
+    m_backBtn = new QPushButton(topBar);
+    m_backBtn->setFixedSize(20, 20);
+    m_backBtn->setToolTip("收起后台");
+    m_backBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/minimize_new.png); background: transparent; }");
+
+    m_topTitleLabel = new QLabel("Local Video Player", topBar);
+    m_topTitleLabel->setAlignment(Qt::AlignCenter);
+    m_topTitleLabel->setStyleSheet("font-size: 16px; font-weight: bold; background: transparent;");
+
+    m_browseBtn = new QPushButton(topBar);
+    m_browseBtn->setFixedSize(24, 24);
+    m_browseBtn->setToolTip("选择视频目录");
+    m_browseBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/folder_new.png); background: transparent; }");
+
+    m_menuBtn = new QPushButton(topBar);
+    m_menuBtn->setFixedSize(24, 24);
+    m_menuBtn->setToolTip("视频列表");
+    m_menuBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/menu_new.png); background: transparent; }");
+
+    topLayout->addWidget(m_closeBtn);
+    topLayout->addSpacing(10);
+    topLayout->addWidget(m_backBtn);
+    topLayout->addStretch();
+    topLayout->addWidget(m_topTitleLabel);
+    topLayout->addStretch();
+    topLayout->addWidget(m_browseBtn);
+    topLayout->addSpacing(15);
+    topLayout->addWidget(m_menuBtn);
+
+    rootLayout->addWidget(topBar);
+
+    // ================= 主体显示区域 =================
+    QWidget *mainBody = new QWidget(this);
+    QHBoxLayout *mainBodyLayout = new QHBoxLayout(mainBody);
+    mainBodyLayout->setContentsMargins(0, 0, 0, 0);
+    mainBodyLayout->setSpacing(0);
+
+    // 左侧：视频区域 + 控制栏
+    QWidget *playerContainer = new QWidget(mainBody);
+    QVBoxLayout *playerLayout = new QVBoxLayout(playerContainer);
+    playerLayout->setContentsMargins(0, 0, 0, 0);
+    playerLayout->setSpacing(0);
+
+    m_videoWidget = new QVideoWidget(playerContainer);
+    m_videoWidget->setStyleSheet("background-color: black;");
+    // 关键修正：保持视频长宽比缩放
+    m_videoWidget->setAspectRatioMode(Qt::KeepAspectRatio);
+
+    // -- 控制栏 --
+    QWidget *controlBar = new QWidget(playerContainer);
+    controlBar->setFixedHeight(60);
+    controlBar->setStyleSheet("background-color: rgba(30, 30, 30, 255);");
     QHBoxLayout *cLayout = new QHBoxLayout(controlBar);
+    cLayout->setContentsMargins(15, 0, 15, 0);
 
-    m_playBtn = new QPushButton();
-    m_playBtn->setObjectName("VideoPlayBtn");
-    m_playBtn->setFixedSize(60, 60);
-    m_playBtn->setProperty("state", "play");
+    m_prevBtn = new QPushButton(controlBar);
+    m_prevBtn->setFixedSize(30, 30);
+    m_prevBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/previous.png); background: transparent;}");
 
-    cLayout->addStretch();
+    m_playBtn = new QPushButton(controlBar);
+    m_playBtn->setFixedSize(40, 40);
+    m_playBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/play_new.png); background: transparent;}");
+
+    m_nextBtn = new QPushButton(controlBar);
+    m_nextBtn->setFixedSize(30, 30);
+    m_nextBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/next.png); background: transparent;}");
+
+    m_timeLabel = new QLabel("00:00 / 00:00", controlBar);
+    m_timeLabel->setStyleSheet("color: white; font-family: Monospace; font-size: 12px; background: transparent;");
+
+    m_progressSlider = new QSlider(Qt::Horizontal, controlBar);
+    m_progressSlider->setStyleSheet(
+        "QSlider::groove:horizontal { height: 6px; background: #444; border-radius: 3px; }"
+        "QSlider::sub-page:horizontal { background: #3498db; border-radius: 3px; }"
+        "QSlider::handle:horizontal { background: white; width: 14px; margin: -4px 0; border-radius: 7px; }"
+    );
+
+    QLabel *volIcon = new QLabel(controlBar);
+    volIcon->setFixedSize(24,24);
+    volIcon->setStyleSheet("border-image: url(:/res/images/video/volumeup.png); background: transparent;");
+
+    m_volumeSlider = new QSlider(Qt::Horizontal, controlBar);
+    m_volumeSlider->setFixedWidth(80);
+    m_volumeSlider->setRange(0, 100);
+    m_volumeSlider->setValue(50);
+    m_volumeSlider->setStyleSheet(m_progressSlider->styleSheet());
+
+    cLayout->addWidget(m_prevBtn);
+    cLayout->addSpacing(10);
     cLayout->addWidget(m_playBtn);
-    cLayout->addStretch();
+    cLayout->addSpacing(10);
+    cLayout->addWidget(m_nextBtn);
+    cLayout->addSpacing(20);
+    cLayout->addWidget(m_timeLabel);
+    cLayout->addSpacing(10);
+    cLayout->addWidget(m_progressSlider);
+    cLayout->addSpacing(20);
+    cLayout->addWidget(volIcon);
+    cLayout->addWidget(m_volumeSlider);
 
-    vAreaLayout->addWidget(m_videoWidget, 1);
-    vAreaLayout->addWidget(controlBar);
+    playerLayout->addWidget(m_videoWidget, 1);
+    playerLayout->addWidget(controlBar);
 
-    // --- 抽屉柄 ---
-    m_toggleBtn = new QPushButton();
-    m_toggleBtn->setObjectName("VideoToggleBtn");
-    m_toggleBtn->setFixedWidth(35);
-    m_toggleBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    m_toggleBtn->setProperty("state", "closed");
-
-    // --- 视频列表抽屉 ---
-    m_drawer = new QWidget();
-    m_drawer->setObjectName("VideoDrawer");
+    // 右侧：播放列表抽屉
+    m_drawer = new QWidget(mainBody);
     m_drawer->setFixedWidth(240);
     m_drawer->setVisible(false);
+    m_drawer->setStyleSheet("background-color: #1a1a1a; border-left: 1px solid #333;");
     
     QVBoxLayout *drawerLayout = new QVBoxLayout(m_drawer);
-    QPushButton *btnDir = new QPushButton("Set Path");
-    btnDir->setObjectName("VideoDirBtn");
+    drawerLayout->setContentsMargins(5, 10, 5, 10);
     
-    m_fileList = new QListWidget();
-    m_fileList->setObjectName("VideoList");
+    QLabel *listTitle = new QLabel("视频列表", m_drawer);
+    listTitle->setAlignment(Qt::AlignCenter);
+    listTitle->setStyleSheet("font-size: 16px; font-weight: bold; color: #ccc; margin-bottom: 10px; background: transparent; border:none;");
+    
+    m_fileList = new QListWidget(m_drawer);
+    m_fileList->setStyleSheet(
+        "QListWidget { background: transparent; border: none; color: white; font-size: 14px; outline: none; }"
+        "QListWidget::item { padding: 10px; border-bottom: 1px solid #333; }"
+        "QListWidget::item:selected { background-color: #3498db; border-radius: 5px; }"
+        "QListWidget::item:hover { background-color: #2c3e50; border-radius: 5px; }"
+    );
 
-    drawerLayout->addWidget(new QLabel("MOVIE LIST"));
+    drawerLayout->addWidget(listTitle);
     drawerLayout->addWidget(m_fileList);
-    drawerLayout->addWidget(btnDir);
 
-    mainLayout->addWidget(videoContainer, 1);
-    mainLayout->addWidget(m_toggleBtn);
-    mainLayout->addWidget(m_drawer);
+    mainBodyLayout->addWidget(playerContainer, 1);
+    mainBodyLayout->addWidget(m_drawer);
 
+    rootLayout->addWidget(mainBody, 1);
+
+    // ================= 播放器引擎 =================
     m_player = new QMediaPlayer(this);
     m_player->setVideoOutput(m_videoWidget);
 
+    // 信号绑定
     connect(m_playBtn, &QPushButton::clicked, this, &VideoPage::togglePlay);
-    connect(m_toggleBtn, &QPushButton::clicked, this, &VideoPage::toggleDrawer);
-    connect(btnDir, &QPushButton::clicked, this, &VideoPage::changeVideoDir);
+    connect(m_menuBtn, &QPushButton::clicked, this, &VideoPage::toggleDrawer);
+    connect(m_browseBtn, &QPushButton::clicked, this, &VideoPage::changeVideoDir);
     connect(m_fileList, &QListWidget::itemClicked, this, &VideoPage::onFileSelected);
+
+    connect(m_prevBtn, &QPushButton::clicked, this, &VideoPage::playPrevious);
+    connect(m_nextBtn, &QPushButton::clicked, this, &VideoPage::playNext);
+    connect(m_volumeSlider, &QSlider::valueChanged, this, &VideoPage::changeVolume);
+    
+    connect(m_player, &QMediaPlayer::positionChanged, this, &VideoPage::onPositionChanged);
+    connect(m_player, &QMediaPlayer::durationChanged, this, &VideoPage::onDurationChanged);
+    connect(m_progressSlider, &QSlider::sliderMoved, this, &VideoPage::onSliderMoved);
+
+    connect(m_backBtn, &QPushButton::clicked, this, &VideoPage::requestMinimize);
+    connect(m_closeBtn, &QPushButton::clicked, this, [this](){
+        m_player->stop();
+        emit requestClose();
+    });
 
     loadSettings();
     scanVideoFiles();
 }
 
-void VideoPage::initStyle() {
-    QFile file(":/res/style/VideoPage.qss");
-    if(file.open(QFile::ReadOnly)) {
-        this->setStyleSheet(QLatin1String(file.readAll()));
-        file.close();
+void VideoPage::keyPressEvent(QKeyEvent *event) {
+    // 按空格也可以控制播放暂停
+    if (event->key() == Qt::Key_Space) {
+        togglePlay();
     }
 }
 
-void VideoPage::updateBtnStyle(QPushButton* btn) {
-    btn->style()->unpolish(btn);
-    btn->style()->polish(btn);
-    btn->update();
-}
-
 void VideoPage::togglePlay() {
-    if (m_player->mediaStatus() == QMediaPlayer::NoMedia) return;
+    if (m_player->mediaStatus() == QMediaPlayer::NoMedia) {
+        if(m_fileList->count() > 0) {
+            m_fileList->setCurrentRow(0);
+            onFileSelected(m_fileList->currentItem());
+        }
+        return;
+    }
     m_isPlaying = !m_isPlaying;
-    if (m_isPlaying) m_player->play(); else m_player->pause();
-    m_playBtn->setProperty("state", m_isPlaying ? "pause" : "play");
-    updateBtnStyle(m_playBtn);
+    if (m_isPlaying) {
+        m_player->play();
+        m_playBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/pause_new.png); background: transparent;}");
+    } else {
+        m_player->pause();
+        m_playBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/play_new.png); background: transparent;}");
+    }
 }
 
 void VideoPage::toggleDrawer() {
-    bool vis = m_drawer->isVisible();
-    m_drawer->setVisible(!vis);
-    m_toggleBtn->setProperty("state", vis ? "closed" : "open");
-    updateBtnStyle(m_toggleBtn);
+    m_drawer->setVisible(!m_drawer->isVisible());
 }
 
 void VideoPage::onFileSelected(QListWidgetItem *item) {
     m_player->setMedia(QUrl::fromLocalFile(m_currentDir + "/" + item->text()));
     m_player->play();
     m_isPlaying = true;
-    m_playBtn->setProperty("state", "pause");
-    updateBtnStyle(m_playBtn);
+    m_playBtn->setStyleSheet("QPushButton { border-image: url(:/res/images/video/pause_new.png); background: transparent;}");
+    m_topTitleLabel->setText(item->text());
+}
+
+void VideoPage::playNext() {
+    int curRow = m_fileList->currentRow();
+    if(curRow < m_fileList->count() - 1) {
+        m_fileList->setCurrentRow(curRow + 1);
+        onFileSelected(m_fileList->currentItem());
+    }
+}
+
+void VideoPage::playPrevious() {
+    int curRow = m_fileList->currentRow();
+    if(curRow > 0) {
+        m_fileList->setCurrentRow(curRow - 1);
+        onFileSelected(m_fileList->currentItem());
+    }
+}
+
+void VideoPage::changeVolume(int value) {
+    m_player->setVolume(value);
+}
+
+void VideoPage::onPositionChanged(qint64 position) {
+    if (!m_progressSlider->isSliderDown()) {
+        m_progressSlider->setValue(position);
+    }
+    m_timeLabel->setText(formatTime(position) + " / " + formatTime(m_player->duration()));
+}
+
+void VideoPage::onDurationChanged(qint64 duration) {
+    m_progressSlider->setRange(0, duration);
+    m_timeLabel->setText(formatTime(m_player->position()) + " / " + formatTime(duration));
+}
+
+void VideoPage::onSliderMoved(int position) {
+    m_player->setPosition(position);
+}
+
+QString VideoPage::formatTime(qint64 ms) {
+    int seconds = (ms / 1000) % 60;
+    int minutes = (ms / 60000) % 60;
+    int hours = (ms / 3600000) % 24;
+    QTime time(hours, minutes, seconds);
+    return hours > 0 ? time.toString("hh:mm:ss") : time.toString("mm:ss");
 }
 
 void VideoPage::loadSettings() {
@@ -135,5 +287,9 @@ void VideoPage::scanVideoFiles() {
 
 void VideoPage::changeVideoDir() {
     QString path = QFileDialog::getExistingDirectory(this, "Select Video Folder", m_currentDir);
-    if(!path.isEmpty()){ m_currentDir = path; saveSettings(path); scanVideoFiles(); }
+    if(!path.isEmpty()){ 
+        m_currentDir = path; 
+        saveSettings(path); 
+        scanVideoFiles(); 
+    }
 }

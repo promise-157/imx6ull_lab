@@ -1,31 +1,106 @@
-/* 容器背景 */
-#MusicPage { background-color: #121212; }
+/* --- 整体页面背景 --- */
+#MusicPage {
+    background-color: #121212;
+}
 
-/* 标题文字 */
-#MusicTitle { color: #FFFFFF; font-size: 22px; font-weight: bold; }
+/* --- 顶部栏 --- */
+#TopBar {
+    background-color: transparent;
+}
+#TopTitle {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+}
+#BackBtn, #MinimizeBtn {
+    border-image: url(:/res/images/music/sub-page.png);
+    border: none;
+    background-color: transparent;
+}
+#BrowseBtn {
+    border-image: url(:/res/images/music/menu.png);
+    border: none;
+    background-color: transparent;
+}
 
-/* 封面样式 */
-#AlbumArt { border: 4px solid #1DB954; border-radius: 10px; }
-
-/* 播放按钮逻辑图标切换 */
-#PlayBtn[state="play"] { border-image: url(:/res/images/music/play.png); border: none; }
-#PlayBtn[state="pause"] { border-image: url(:/res/images/music/pause.png); border: none; }
-
-/* 抽屉按键图标切换 */
-#ToggleBtn { background-color: #1DB954; border: none; }
-#ToggleBtn[state="closed"] { border-image: url(:/res/images/music/previous.png); }
-#ToggleBtn[state="open"] { border-image: url(:/res/images/music/next.png); }
-
-/* 歌单列表 */
-#MusicList {
+/* --- 抽屉与歌单 --- */
+#MusicDrawer {
     background-color: #191919;
+    border-radius: 10px;
+}
+#ListTitle {
     color: #AAAAAA;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #282828;
+}
+#MusicList {
+    background-color: transparent;
+    color: #DDDDDD;
+    font-size: 14px;
     border: none;
     outline: none;
 }
-#MusicList::item { height: 50px; border-bottom: 1px solid #282828; padding-left: 10px; }
+#MusicList::item {
+    height: 45px;
+    border-bottom: 1px solid #282828;
+    padding-left: 10px;
+}
 #MusicList::item:selected {
     background-color: #282828;
     color: #1DB954;
-    border-left: 5px solid #1DB954;
+    border-left: 4px solid #1DB954;
 }
+
+/* --- 底部控制栏 --- */
+#BottomBar {
+    background-color: #181818;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* 时间文本 */
+#TimeLabel {
+    color: #B3B3B3;
+    font-size: 12px;
+}
+
+/* 进度条 与 音量条 */
+#ProgressSlider::groove:horizontal, #VolumeSlider::groove:horizontal {
+    border: none;
+    height: 4px;
+    background: #404040;
+    border-radius: 2px;
+}
+#ProgressSlider::sub-page:horizontal, #VolumeSlider::sub-page:horizontal {
+    background: #1DB954;
+    border-radius: 2px;
+}
+#ProgressSlider::handle:horizontal, #VolumeSlider::handle:horizontal {
+    background: #FFFFFF;
+    border: none;
+    width: 12px;
+    height: 12px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    border-radius: 6px;
+}
+
+/* 底部按钮集合 */
+QPushButton { background-color: transparent; border: none; }
+
+#ModeBtn[mode="list"] { border-image: url(:/res/images/music/order.png); }
+#ModeBtn[mode="single"] { border-image: url(:/res/images/music/repeat_one.png); }
+#ModeBtn[mode="random"] { border-image: url(:/res/images/music/shuffle.png); }
+#PrevBtn { border-image: url(:/res/images/music/previous.png); }
+#NextBtn { border-image: url(:/res/images/music/next.png); }
+#VolumeBtn[state="on"] { border-image: url(:/res/images/music/volume.png); }
+#VolumeBtn[state="off"] { border-image: url(:/res/images/music/mute.png); }
+
+#FavoriteBtn[state="no"] { border-image: url(:/res/images/music/favorite_no.png); }
+#FavoriteBtn[state="yes"] { border-image: url(:/res/images/music/favorite_yes.png); }
+
+/* 播放按钮逻辑图标切换 */
+#PlayBtn[state="play"] { border-image: url(:/res/images/music/play.png); }
+#PlayBtn[state="pause"] { border-image: url(:/res/images/music/pause.png); }#CloseBtn { qproperty-icon: url(:/res/images/music/close.png); qproperty-iconSize: 24px 24px; background: transparent; border: none; outline: none; }

@@ -6,27 +6,39 @@
 #include <QScrollBar>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    stack = new QStackedWidget(this);
+    // 整体为主垂直布局，上边是系统顶部栏，下边是页面堆栈
+    QWidget *centralWidget = new QWidget(this);
+    setCentralWidget(centralWidget);
+    
+    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
+    mainLayout->setContentsMargins(0, 0, 0, 0); // 无边距
+
+    // 1. 初始化系统顶部全局栏
+    setupSystemTopBar(mainLayout);
+
+    // 2. 初始化堆栈容器
+    m_stack = new QStackedWidget(this);
+    mainLayout->addWidget(m_stack, 1);
+
     logger = new LogManager(this);
 
-    stack->addWidget(createDesktopPage());   // 0
-    stack->addWidget(createTerminalPage());  // 1
-    // 增量添加新页面
-    m_musicPage = new MusicPage(this);
-    stack->addWidget(m_musicPage);           // Index 2
-    m_videoPage= new VideoPage(this);
-    stack->addWidget(m_videoPage); // Index 3
- //   for(int i=1; i<=4; ++i) stack->addWidget(createSimpleAppPage(QString("应用 %1").arg(i)));
-
-    setCentralWidget(stack);
+    // 添加桌面页和终端页
+    m_stack->addWidget(createDesktopPage());   // index 0
+    m_stack->addWidget(createTerminalPage());  // index 1
+    
     logger->start();
     QTimer::singleShot(500, this, [this](){ logger->writeCommand("\n"); });
 }
 
-void MainWindow::setupTopBar(QVBoxLayout *layout) {
-    QHBoxLayout *topBar = new QHBoxLayout();
+void MainWindow::setupSystemTopBar(QVBoxLayout *mainLayout) {
+    m_systemTopBar = new QWidget(this);
+    m_systemTopBar->setStyleSheet("background-color: #2c3e50; border-bottom: 2px solid #1a252f;");
+    
+    QHBoxLayout *topBar = new QHBoxLayout(m_systemTopBar);
     topBar->setContentsMargins(10, 5, 10, 5);
-    QString style = "QPushButton { background: #333; color: white; border-radius: 5px; padding: 10px; font-weight: bold; min-width: 90px; }";
+    QString style = "QPushButton { background: #34495e; color: white; border-radius: 5px; padding: 10px; font-weight: bold; min-width: 90px; }"
+                    "QPushButton:hover { background: #3b536a; }"
+                    "QPushButton:pressed { background: #2c3e50; }";
     
     QPushButton *btnHome = new QPushButton("桌面", this);
     btnHome->setStyleSheet(style);
@@ -38,14 +50,85 @@ void MainWindow::setupTopBar(QVBoxLayout *layout) {
 
     topBar->addWidget(btnHome);
     topBar->addWidget(btnTerm);
+    
+    // 中间的后台任务栏
+    m_taskBarLayout = new QHBoxLayout();
+    m_taskBarLayout->setSpacing(10);
+    topBar->addLayout(m_taskBarLayout);
+    
     topBar->addStretch();
     
-    QPushButton *btnExit = new QPushButton("✖ 退出", this);
-    btnExit->setStyleSheet("background: #800; color: white; border-radius: 5px; padding: 10px; font-weight: bold;");
+    QPushButton *btnExit = new QPushButton("✖ 退出系统", this);
+    btnExit->setStyleSheet("QPushButton { background: #c0392b; color: white; border-radius: 5px; padding: 10px; font-weight: bold; }"
+                           "QPushButton:hover { background: #d35400; }"
+                           "QPushButton:pressed { background: #e74c3c; }");
     connect(btnExit, &QPushButton::clicked, qApp, &QApplication::quit);
     topBar->addWidget(btnExit);
 
-    layout->addLayout(topBar);
+    mainLayout->addWidget(m_systemTopBar);
+}
+
+void MainWindow::registerApp(IAppModule *app) {
+    if(!app) return;
+    
+    m_registeredApps.append(app);
+    m_stack->addWidget(app);
+    int appIndex = m_stack->indexOf(app);
+
+    // 在桌面上创建该应用的快捷方式
+    QPushButton *iconBtn = new QPushButton(app->appName());
+    iconBtn->setFixedSize(110, 110); // 缩小图标尺寸以适应IMX6ULL常见的分辨率(480x272等)，防止撑爆屏幕导致不能全屏
+    iconBtn->setStyleSheet("QPushButton { background: #34495e; color: white; border-radius: 15px; font-size: 15px; font-weight:bold; }"
+                           "QPushButton:hover { background: #3b536a; }"
+                           "QPushButton:pressed { background: #2c3e50; }");
+    
+    // 点击图标触发：打开应用并切换焦点
+    connect(iconBtn, &QPushButton::clicked, this, [this, appIndex, app]() {
+        m_stack->setCurrentIndex(appIndex);
+        addAppToTaskBar(app);
+    });
+
+    int count = m_registeredApps.size() - 1;
+    // 每行最多两个以适应窄屏 (原来是 count % 4，现在改成 count % 3 甚至 2)
+    m_desktopGrid->addWidget(iconBtn, count / 3, count % 3, Qt::AlignCenter);
+
+    // 接管应用退后台和彻底关闭的统一信号
+    connect(app, &IAppModule::requestMinimize, this, [this, app]() { onAppMinimize(app); });
+    connect(app, &IAppModule::requestClose, this, [this, app]() { onAppClose(app); });
+}
+
+void MainWindow::onAppMinimize(IAppModule *app) {
+    goHome();
+}
+
+void MainWindow::onAppClose(IAppModule *app) {
+    goHome();
+    removeAppFromTaskBar(app);
+    app->stopService();
+}
+
+void MainWindow::addAppToTaskBar(IAppModule *app) {
+    if (m_runningApps.contains(app)) return;
+
+    QPushButton *taskBtn = new QPushButton("后台:" + app->appName());
+    taskBtn->setFixedSize(120, 40);
+    taskBtn->setStyleSheet("QPushButton { background: #27ae60; color: white; border-radius: 5px; font-weight: bold; }");
+    
+    connect(taskBtn, &QPushButton::clicked, this, [this, app]() {
+        m_stack->setCurrentWidget(app);
+    });
+
+    m_taskBarLayout->addWidget(taskBtn);
+    m_runningApps.insert(app, taskBtn);
+}
+
+void MainWindow::removeAppFromTaskBar(IAppModule *app) {
+    if (!m_runningApps.contains(app)) return;
+
+    QPushButton *taskBtn = m_runningApps.value(app);
+    m_taskBarLayout->removeWidget(taskBtn);
+    taskBtn->deleteLater();
+    m_runningApps.remove(app);
 }
 
 QWidget* MainWindow::createDesktopPage() {
@@ -53,29 +136,12 @@ QWidget* MainWindow::createDesktopPage() {
     page->setStyleSheet("background-color: #1a1a1a;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     
-    // 桌面也要有 TopBar，这样才能从桌面点“终端”或者“退出”
-    setupTopBar(layout); 
+    // 创建一个居中的桌面网格
+    m_desktopGrid = new QGridLayout();
+    m_desktopGrid->setSpacing(20);
+    m_desktopGrid->setContentsMargins(20, 20, 20, 20);
 
-    QGridLayout *grid = new QGridLayout();
-    grid->setSpacing(30);
-
-    // 假设你有 2 个真正的 App
-    QStringList apps = {"音乐播放器", "视频播放器"};
-
-    for(int i=0; i<apps.size(); ++i) {
-        QPushButton *btn = new QPushButton(apps[i]);
-        btn->setFixedSize(160, 160);
-        btn->setStyleSheet("QPushButton { background: #2c3e50; color: white; border-radius: 20px; font-size: 18px; }");
-        
-        // 跳转逻辑：
-        connect(btn, &QPushButton::clicked, this, [this, i](){
-            if(i == 0) stack->setCurrentIndex(2); // 点击音乐图标 -> 跳转到 MusicPage
-            else if(i == 1) stack->setCurrentIndex(3); // 点击视频图标 -> 跳转到 VideoPage
-        });
-        
-        grid->addWidget(btn, i/2, i%2, Qt::AlignCenter);
-    }
-    layout->addLayout(grid);
+    layout->addLayout(m_desktopGrid);
     layout->addStretch();
     return page;
 }
@@ -85,11 +151,9 @@ QWidget* MainWindow::createTerminalPage() {
     page->setStyleSheet("background-color: #000;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(0, 0, 0, 0);
-    setupTopBar(layout);
 
     terminalDisplay = new QPlainTextEdit();
     terminalDisplay->setReadOnly(true);
-    // 强制开启 30px 宽的滚动条，方便触摸
     terminalDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     terminalDisplay->setStyleSheet(
         "QPlainTextEdit { background: black; color: #00FF00; font-family: 'Monospace'; font-size: 16px; border: none; padding: 10px; }"
@@ -104,13 +168,9 @@ QWidget* MainWindow::createTerminalPage() {
     kbLayout->setContentsMargins(5, 5, 5, 5);
     kbLayout->setSpacing(4);
 
-    // 第一行: 字母 / 数字
     kbLayout->addLayout(createKeyboardRow({"q","w","e","r","t","y","u","i","o","p"}, {"1","2","3","4","5","6","7","8","9","0"}));
-    // 第二行: 字母 / 符号 (补齐了 &)
     kbLayout->addLayout(createKeyboardRow({"a","s","d","f","g","h","j","k","l"}, {"!","@","#","$","%","&","*","(",")"}));
-    // 第三行: Shift + 字母 / 特殊符号
     kbLayout->addLayout(createKeyboardRow({"Shift","z","x","c","v","b","n","m",",",".","DEL"}, {"Shift","Z","X","C","V","B","N","M","?","\"","DEL"}));
-    // 第四行: 功能键
     kbLayout->addLayout(createKeyboardRow({"Space", "/", "-", "_", ":", "Enter"}, {"Space", "'", "|", ";", "=", "Enter"}));
     
     layout->addWidget(kbContainer);
@@ -150,7 +210,6 @@ QHBoxLayout* MainWindow::createKeyboardRow(const QStringList &low, const QString
         connect(b, &QPushButton::clicked, this, &MainWindow::handleKeyClicked);
         h->addWidget(b);
         
-        // 固定比例分配宽度，避免畸形
         if(low[i] == "Space") h->setStretch(i, 4);
         else if(low[i] == "Enter") h->setStretch(i, 2);
         else h->setStretch(i, 1);
@@ -183,22 +242,4 @@ void MainWindow::handleKeyClicked() {
     } else {
         logger->writeCommand(val);
     }
-}
-
-QWidget* MainWindow::createSimpleAppPage(QString name) {
-    QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #121212;");
-    QVBoxLayout *layout = new QVBoxLayout(page);
-    setupTopBar(layout);
-    QLabel *label = new QLabel("正在运行: " + name);
-    label->setStyleSheet("color: white; font-size: 24px;");
-    layout->addStretch();
-    layout->addWidget(label, 0, Qt::AlignCenter);
-    QPushButton *btnBack = new QPushButton("返回桌面");
-    btnBack->setFixedSize(200, 50);
-    btnBack->setStyleSheet("background: #444; color: white; border-radius: 8px;");
-    connect(btnBack, &QPushButton::clicked, this, &MainWindow::goHome);
-    layout->addWidget(btnBack, 0, Qt::AlignCenter);
-    layout->addStretch();
-    return page;
 }

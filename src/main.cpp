@@ -2,14 +2,17 @@
 #include <QApplication>
 #include <QFile>
 
+#include "MusicPage.h"
+#include "VideoPage.h"
+#include "HardwareMonitorPage.h"
+#include "HardwareControlPage.h"
+
 int main(int argc, char *argv[])
 {
-    // 针对嵌入式屏幕的属性设置（可选）
     // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication a(argc, argv);
 
-    // 1. 加载全局基础样式表 (如通用的字体、全局背景、滚动条美化)
     QFile file(":/res/style/base.qss");
     if (file.open(QFile::ReadOnly)) {
         QString styleSheet = QLatin1String(file.readAll());
@@ -17,13 +20,22 @@ int main(int argc, char *argv[])
         file.close();
     }
 
-    // 2. 启动主窗口
-    // 你的 MainWindow 构造函数会自动初始化 MusicPage 和 VideoPage
+    // 实例化新的主窗口系统
     MainWindow w;
     
-    // 如果是嵌入式板子，通常直接全屏显示
-    // w.showFullScreen(); 
-    w.show();
+    // 实例化各独立应用子模块，并注入解耦的微系统
+    MusicPage *musicApp = new MusicPage(&w);
+    VideoPage *videoApp = new VideoPage(&w);
+    HardwareMonitorPage *monitorApp = new HardwareMonitorPage(&w);
+
+    // 增量式注册应用模块，此时主窗口不再通过数字硬编码寻找应用
+    w.registerApp(musicApp);
+    w.registerApp(videoApp);
+    w.registerApp(monitorApp);
+    HardwareControlPage *hwCtrlApp = new HardwareControlPage(&w);
+    w.registerApp(hwCtrlApp);
+
+    w.showFullScreen(); 
 
     return a.exec();
 }

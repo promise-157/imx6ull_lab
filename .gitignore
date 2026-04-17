@@ -1,0 +1,20 @@
+# C++ & CMake Build artifacts
+build/
+cmake-build-*/
+.cmake/
+CMakeCache.txt
+CMakeFiles/
+*.ninja
+*.o
+*.so
+
+# User specified ignore directories (case coverage)
+mfgtoolsfile/
+myMusic/
+mymusic/
+myVideo/
+myvideo/
+
+# IDE files
+.vscode/
+*.pro.user

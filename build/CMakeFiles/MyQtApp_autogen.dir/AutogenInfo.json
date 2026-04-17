@@ -8,6 +8,26 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/promise/imx6ull_lab/include/AIVoiceClient_copy.h",
+			"MU",
+			"6YEA5652QU/moc_AIVoiceClient_copy.cpp"
+		],
+		[
+			"/home/promise/imx6ull_lab/include/HardwareControlPage.h",
+			"MU",
+			"6YEA5652QU/moc_HardwareControlPage.cpp"
+		],
+		[
+			"/home/promise/imx6ull_lab/include/HardwareMonitorPage.h",
+			"MU",
+			"6YEA5652QU/moc_HardwareMonitorPage.cpp"
+		],
+		[
+			"/home/promise/imx6ull_lab/include/IAppModule.h",
+			"MU",
+			"6YEA5652QU/moc_IAppModule.cpp"
+		],
+		[
 			"/home/promise/imx6ull_lab/include/LogManager.h",
 			"MU",
 			"6YEA5652QU/moc_LogManager.cpp"
@@ -88,6 +108,9 @@
 	"SETTINGS_FILE" : "/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/promise/imx6ull_lab/src/AIVoiceClient_copy.cpp", "MU" ],
+		[ "/home/promise/imx6ull_lab/src/HardwareControlPage.cpp", "MU" ],
+		[ "/home/promise/imx6ull_lab/src/HardwareMonitorPage.cpp", "MU" ],
 		[ "/home/promise/imx6ull_lab/src/LogManager.cpp", "MU" ],
 		[ "/home/promise/imx6ull_lab/src/MusicPage.cpp", "MU" ],
 		[ "/home/promise/imx6ull_lab/src/VideoPage.cpp", "MU" ],
