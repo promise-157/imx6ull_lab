@@ -53,159 +53,350 @@ build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
 build edit_cache: phony CMakeFiles/edit_cache.util
 
 # =============================================================================
-# Object build statements for EXECUTABLE target MyQtApp
+# Write statements declared in CMakeLists.txt:
+# /home/promise/imx6ull_lab/CMakeLists.txt
+# =============================================================================
 
 
 #############################################
-# Order-only phony target for MyQtApp
+# Utility command for rebuild_cache
 
-build cmake_object_order_depends_target_MyQtApp: phony || MyQtApp_autogen MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp
+build components/core_utils/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/components/core_utils && /usr/bin/cmake -S/home/promise/imx6ull_lab -B/home/promise/imx6ull_lab/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
 
-build CMakeFiles/MyQtApp.dir/MyQtApp_autogen/mocs_compilation.cpp.o: CXX_COMPILER__MyQtApp MyQtApp_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/MyQtApp_autogen/mocs_compilation.cpp.o.d
+build components/core_utils/rebuild_cache: phony components/core_utils/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build components/core_utils/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/components/core_utils && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build components/core_utils/edit_cache: phony components/core_utils/CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target core_utils_lib
+
+
+#############################################
+# Order-only phony target for core_utils_lib
+
+build cmake_object_order_depends_target_core_utils_lib: phony || components/core_utils/core_utils_lib_autogen
+
+build components/core_utils/CMakeFiles/core_utils_lib.dir/core_utils_lib_autogen/mocs_compilation.cpp.o: CXX_COMPILER__core_utils_lib components/core_utils/core_utils_lib_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_core_utils_lib
+  DEFINES = -DQT_CORE_LIB
+  DEP_FILE = components/core_utils/CMakeFiles/core_utils_lib.dir/core_utils_lib_autogen/mocs_compilation.cpp.o.d
   FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/MyQtApp_autogen
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
+  INCLUDES = -Icomponents/core_utils/core_utils_lib_autogen/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++
+  OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
+  OBJECT_FILE_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir/core_utils_lib_autogen
 
-build CMakeFiles/MyQtApp.dir/src/AIVoiceClient_copy.cpp.o: CXX_COMPILER__MyQtApp ../src/AIVoiceClient_copy.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/AIVoiceClient_copy.cpp.o.d
+build components/core_utils/CMakeFiles/core_utils_lib.dir/src/ConfigManager.cpp.o: CXX_COMPILER__core_utils_lib ../components/core_utils/src/ConfigManager.cpp || cmake_object_order_depends_target_core_utils_lib
+  DEFINES = -DQT_CORE_LIB
+  DEP_FILE = components/core_utils/CMakeFiles/core_utils_lib.dir/src/ConfigManager.cpp.o.d
   FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
+  INCLUDES = -Icomponents/core_utils/core_utils_lib_autogen/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++
+  OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
+  OBJECT_FILE_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir/src
 
-build CMakeFiles/MyQtApp.dir/src/HardwareControlPage.cpp.o: CXX_COMPILER__MyQtApp ../src/HardwareControlPage.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/HardwareControlPage.cpp.o.d
+build components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.o: CXX_COMPILER__core_utils_lib ../components/core_utils/src/LoggerManager.cpp || cmake_object_order_depends_target_core_utils_lib
+  DEFINES = -DQT_CORE_LIB
+  DEP_FILE = components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.o.d
   FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/src/HardwareMonitorPage.cpp.o: CXX_COMPILER__MyQtApp ../src/HardwareMonitorPage.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/HardwareMonitorPage.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/src/LogManager.cpp.o: CXX_COMPILER__MyQtApp ../src/LogManager.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/LogManager.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/src/MusicPage.cpp.o: CXX_COMPILER__MyQtApp ../src/MusicPage.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/MusicPage.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/src/VideoPage.cpp.o: CXX_COMPILER__MyQtApp ../src/VideoPage.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/VideoPage.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/src/main.cpp.o: CXX_COMPILER__MyQtApp ../src/main.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/main.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/src/mainwindow.cpp.o: CXX_COMPILER__MyQtApp ../src/mainwindow.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/src/mainwindow.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
-
-build CMakeFiles/MyQtApp.dir/MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp.o: CXX_COMPILER__MyQtApp MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp || cmake_object_order_depends_target_MyQtApp
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/MyQtApp.dir/MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp.o.d
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
-  INCLUDES = -IMyQtApp_autogen/include -I../src -I../include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
-  OBJECT_FILE_DIR = CMakeFiles/MyQtApp.dir/MyQtApp_autogen/EWIEGA46WW
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_PDB = MyQtApp.pdb
+  INCLUDES = -Icomponents/core_utils/core_utils_lib_autogen/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++
+  OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
+  OBJECT_FILE_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir/src
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target MyQtApp
+# Link build statements for STATIC_LIBRARY target core_utils_lib
 
 
 #############################################
-# Link the executable MyQtApp
+# Link the static library components/core_utils/libcore_utils_lib.a
 
-build MyQtApp: CXX_EXECUTABLE_LINKER__MyQtApp CMakeFiles/MyQtApp.dir/MyQtApp_autogen/mocs_compilation.cpp.o CMakeFiles/MyQtApp.dir/src/AIVoiceClient_copy.cpp.o CMakeFiles/MyQtApp.dir/src/HardwareControlPage.cpp.o CMakeFiles/MyQtApp.dir/src/HardwareMonitorPage.cpp.o CMakeFiles/MyQtApp.dir/src/LogManager.cpp.o CMakeFiles/MyQtApp.dir/src/MusicPage.cpp.o CMakeFiles/MyQtApp.dir/src/VideoPage.cpp.o CMakeFiles/MyQtApp.dir/src/main.cpp.o CMakeFiles/MyQtApp.dir/src/mainwindow.cpp.o CMakeFiles/MyQtApp.dir/MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp.o | /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9 || MyQtApp_autogen
-  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g
-  LINK_FLAGS = -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
-  LINK_LIBRARIES = /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
-  OBJECT_DIR = CMakeFiles/MyQtApp.dir
+build components/core_utils/libcore_utils_lib.a: CXX_STATIC_LIBRARY_LINKER__core_utils_lib components/core_utils/CMakeFiles/core_utils_lib.dir/core_utils_lib_autogen/mocs_compilation.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/ConfigManager.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.o || components/core_utils/core_utils_lib_autogen /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
+  LANGUAGE_COMPILE_FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g
+  OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/MyQtApp.dir/
-  TARGET_FILE = MyQtApp
-  TARGET_PDB = MyQtApp.pdb
+  TARGET_FILE = components/core_utils/libcore_utils_lib.a
+  TARGET_PDB = core_utils_lib.a.dbg
 
 
 #############################################
-# Utility command for MyQtApp_autogen
+# Utility command for core_utils_lib_autogen
 
-build MyQtApp_autogen: phony CMakeFiles/MyQtApp_autogen MyQtApp_autogen/mocs_compilation.cpp
+build components/core_utils/core_utils_lib_autogen: phony components/core_utils/CMakeFiles/core_utils_lib_autogen components/core_utils/core_utils_lib_autogen/mocs_compilation.cpp
 
 
 #############################################
-# Custom command for MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp
+# Custom command for components/core_utils/CMakeFiles/core_utils_lib_autogen
 
-build MyQtApp_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND ../resources.qrc CMakeFiles/MyQtApp_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json ../res/images/hwctrl/sensor.svg ../res/images/hwctrl/buzzer_on.svg ../res/images/hwctrl/led_off.svg ../res/images/hwctrl/buzzer_off.svg ../res/images/hwctrl/led_on.svg ../res/images/music/favorite_yes.png ../res/images/music/mute.png ../res/images/music/cd.png ../res/images/music/listcircle.png ../res/images/music/pause.png ../res/images/music/menu_new.png ../res/images/music/shuffle.png ../res/images/music/play.png ../res/images/music/close_new.png ../res/images/music/handle.png ../res/images/music/repeat_one.png ../res/images/music/volume.png ../res/images/music/minimize_new.png ../res/images/music/menu.png ../res/images/music/lyrics.png ../res/images/music/mask.png ../res/images/music/previous.png ../res/images/music/order.png ../res/images/music/next.png ../res/images/music/folder_new.png ../res/images/music/favorite_no.png ../res/images/video/play_new.png ../res/images/video/volumedown.png ../res/images/video/menu_new.png ../res/images/video/folder_new.png ../res/images/video/play.png ../res/images/video/screen.png ../res/images/video/handle.png ../res/images/video/next.png ../res/images/video/mask.png ../res/images/video/pause_new.png ../res/images/video/close_new.png ../res/images/video/fullscreen.png ../res/images/video/previous.png ../res/images/video/bg.png ../res/images/video/volumeup.png ../res/images/video/minimize_new.png ../res/images/video/pause.png ../res/images/hardware/monitor_icon.png ../res/images/hardware/close_new.png ../res/images/hardware/minimize_new.png ../res/style/MusicPage.qss ../res/style/VideoPage.qss ../res/style/HardwareControlPage_copy.qss /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/rcc || MyQtApp_autogen
-  COMMAND = cd /home/promise/imx6ull_lab/build && /usr/bin/cmake -E cmake_autorcc /home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Debug
-  DESC = Automatic RCC for resources.qrc
+build components/core_utils/CMakeFiles/core_utils_lib_autogen components/core_utils/core_utils_lib_autogen/mocs_compilation.cpp: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/components/core_utils && /usr/bin/cmake -E cmake_autogen /home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/core_utils_lib_autogen.dir/AutogenInfo.json Debug
+  DESC = Automatic MOC and UIC for target core_utils_lib
+  restat = 1
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/promise/imx6ull_lab/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build components/gui_pages/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/components/gui_pages && /usr/bin/cmake -S/home/promise/imx6ull_lab -B/home/promise/imx6ull_lab/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build components/gui_pages/rebuild_cache: phony components/gui_pages/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build components/gui_pages/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/components/gui_pages && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build components/gui_pages/edit_cache: phony components/gui_pages/CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gui_pages_lib
+
+
+#############################################
+# Order-only phony target for gui_pages_lib
+
+build cmake_object_order_depends_target_gui_pages_lib: phony || cmake_object_order_depends_target_core_utils_lib components/gui_pages/gui_pages_lib_autogen
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/gui_pages_lib_autogen/mocs_compilation.cpp.o: CXX_COMPILER__gui_pages_lib components/gui_pages/gui_pages_lib_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/gui_pages_lib_autogen/mocs_compilation.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/gui_pages_lib_autogen
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/AIVoiceClient_copy.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/AIVoiceClient_copy.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/AIVoiceClient_copy.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/HardwareControlPage.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/HardwareControlPage.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/HardwareControlPage.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/HardwareMonitorPage.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/HardwareMonitorPage.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/HardwareMonitorPage.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/LogManager.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/LogManager.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/LogManager.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/MusicPage.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/MusicPage.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/MusicPage.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/VideoPage.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/VideoPage.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/VideoPage.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+build components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/mainwindow.cpp.o: CXX_COMPILER__gui_pages_lib ../components/gui_pages/src/mainwindow.cpp || cmake_object_order_depends_target_gui_pages_lib
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/mainwindow.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/gui_pages/gui_pages_lib_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  OBJECT_FILE_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gui_pages_lib
+
+
+#############################################
+# Link the static library components/gui_pages/libgui_pages_lib.a
+
+build components/gui_pages/libgui_pages_lib.a: CXX_STATIC_LIBRARY_LINKER__gui_pages_lib components/gui_pages/CMakeFiles/gui_pages_lib.dir/gui_pages_lib_autogen/mocs_compilation.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/AIVoiceClient_copy.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/HardwareControlPage.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/HardwareMonitorPage.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/LogManager.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/MusicPage.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/VideoPage.cpp.o components/gui_pages/CMakeFiles/gui_pages_lib.dir/src/mainwindow.cpp.o || components/core_utils/libcore_utils_lib.a components/gui_pages/gui_pages_lib_autogen /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
+  LANGUAGE_COMPILE_FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g
+  OBJECT_DIR = components/gui_pages/CMakeFiles/gui_pages_lib.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = components/gui_pages/libgui_pages_lib.a
+  TARGET_PDB = gui_pages_lib.a.dbg
+
+
+#############################################
+# Utility command for gui_pages_lib_autogen
+
+build components/gui_pages/gui_pages_lib_autogen: phony components/gui_pages/CMakeFiles/gui_pages_lib_autogen components/gui_pages/gui_pages_lib_autogen/mocs_compilation.cpp components/core_utils/libcore_utils_lib.a
+
+
+#############################################
+# Custom command for components/gui_pages/CMakeFiles/gui_pages_lib_autogen
+
+build components/gui_pages/CMakeFiles/gui_pages_lib_autogen components/gui_pages/gui_pages_lib_autogen/mocs_compilation.cpp: CUSTOM_COMMAND || components/core_utils/core_utils_lib_autogen components/core_utils/libcore_utils_lib.a
+  COMMAND = cd /home/promise/imx6ull_lab/build/components/gui_pages && /usr/bin/cmake -E cmake_autogen /home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/gui_pages_lib_autogen.dir/AutogenInfo.json Debug
+  DESC = Automatic MOC and UIC for target gui_pages_lib
+  restat = 1
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/promise/imx6ull_lab/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build apps/demo/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/apps/demo && /usr/bin/cmake -S/home/promise/imx6ull_lab -B/home/promise/imx6ull_lab/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build apps/demo/rebuild_cache: phony apps/demo/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build apps/demo/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/promise/imx6ull_lab/build/apps/demo && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build apps/demo/edit_cache: phony apps/demo/CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for EXECUTABLE target demo_app
+
+
+#############################################
+# Order-only phony target for demo_app
+
+build cmake_object_order_depends_target_demo_app: phony || apps/demo/demo_app_autogen apps/demo/demo_app_autogen/QU2567GMYG/qrc_resources.cpp cmake_object_order_depends_target_core_utils_lib cmake_object_order_depends_target_gui_pages_lib
+
+build apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/mocs_compilation.cpp.o: CXX_COMPILER__demo_app apps/demo/demo_app_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_demo_app
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/mocs_compilation.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Iapps/demo/demo_app_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = apps/demo/CMakeFiles/demo_app.dir
+  OBJECT_FILE_DIR = apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen
+
+build apps/demo/CMakeFiles/demo_app.dir/main.cpp.o: CXX_COMPILER__demo_app ../apps/demo/main.cpp || cmake_object_order_depends_target_demo_app
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = apps/demo/CMakeFiles/demo_app.dir/main.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Iapps/demo/demo_app_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = apps/demo/CMakeFiles/demo_app.dir
+  OBJECT_FILE_DIR = apps/demo/CMakeFiles/demo_app.dir
+
+build apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG/qrc_resources.cpp.o: CXX_COMPILER__demo_app apps/demo/demo_app_autogen/QU2567GMYG/qrc_resources.cpp || cmake_object_order_depends_target_demo_app
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG/qrc_resources.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Iapps/demo/demo_app_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = apps/demo/CMakeFiles/demo_app.dir
+  OBJECT_FILE_DIR = apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target demo_app
+
+
+#############################################
+# Link the executable apps/demo/demo_app
+
+build apps/demo/demo_app: CXX_EXECUTABLE_LINKER__demo_app apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/mocs_compilation.cpp.o apps/demo/CMakeFiles/demo_app.dir/main.cpp.o apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG/qrc_resources.cpp.o | components/gui_pages/libgui_pages_lib.a components/core_utils/libcore_utils_lib.a /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9 || apps/demo/demo_app_autogen components/core_utils/libcore_utils_lib.a components/gui_pages/libgui_pages_lib.a
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g
+  LINK_FLAGS = -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
+  LINK_LIBRARIES = components/gui_pages/libgui_pages_lib.a  components/core_utils/libcore_utils_lib.a  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
+  OBJECT_DIR = apps/demo/CMakeFiles/demo_app.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = apps/demo/demo_app
+  TARGET_PDB = demo_app.dbg
+
+
+#############################################
+# Utility command for demo_app_autogen
+
+build apps/demo/demo_app_autogen: phony apps/demo/CMakeFiles/demo_app_autogen apps/demo/demo_app_autogen/mocs_compilation.cpp components/core_utils/libcore_utils_lib.a components/gui_pages/libgui_pages_lib.a
+
+
+#############################################
+# Custom command for apps/demo/demo_app_autogen/QU2567GMYG/qrc_resources.cpp
+
+build apps/demo/demo_app_autogen/QU2567GMYG/qrc_resources.cpp: CUSTOM_COMMAND ../assets/resources.qrc apps/demo/CMakeFiles/demo_app_autogen.dir/AutoRcc_resources_QU2567GMYG_Info.json ../assets/res/images/hwctrl/sensor.svg ../assets/res/images/hwctrl/buzzer_on.svg ../assets/res/images/hwctrl/led_off.svg ../assets/res/images/hwctrl/buzzer_off.svg ../assets/res/images/hwctrl/led_on.svg ../assets/res/images/music/favorite_yes.png ../assets/res/images/music/mute.png ../assets/res/images/music/cd.png ../assets/res/images/music/listcircle.png ../assets/res/images/music/pause.png ../assets/res/images/music/menu_new.png ../assets/res/images/music/shuffle.png ../assets/res/images/music/play.png ../assets/res/images/music/close_new.png ../assets/res/images/music/handle.png ../assets/res/images/music/repeat_one.png ../assets/res/images/music/volume.png ../assets/res/images/music/minimize_new.png ../assets/res/images/music/menu.png ../assets/res/images/music/lyrics.png ../assets/res/images/music/mask.png ../assets/res/images/music/previous.png ../assets/res/images/music/order.png ../assets/res/images/music/next.png ../assets/res/images/music/folder_new.png ../assets/res/images/music/favorite_no.png ../assets/res/images/video/play_new.png ../assets/res/images/video/volumedown.png ../assets/res/images/video/menu_new.png ../assets/res/images/video/folder_new.png ../assets/res/images/video/play.png ../assets/res/images/video/screen.png ../assets/res/images/video/handle.png ../assets/res/images/video/next.png ../assets/res/images/video/mask.png ../assets/res/images/video/pause_new.png ../assets/res/images/video/close_new.png ../assets/res/images/video/fullscreen.png ../assets/res/images/video/previous.png ../assets/res/images/video/bg.png ../assets/res/images/video/volumeup.png ../assets/res/images/video/minimize_new.png ../assets/res/images/video/pause.png ../assets/res/images/hardware/monitor_icon.png ../assets/res/images/hardware/close_new.png ../assets/res/images/hardware/minimize_new.png ../assets/res/style/MusicPage.qss ../assets/res/style/VideoPage.qss ../assets/res/style/HardwareControlPage_copy.qss /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/rcc || apps/demo/demo_app_autogen components/core_utils/core_utils_lib_autogen components/core_utils/libcore_utils_lib.a components/gui_pages/gui_pages_lib_autogen components/gui_pages/libgui_pages_lib.a
+  COMMAND = cd /home/promise/imx6ull_lab/build/apps/demo && /usr/bin/cmake -E cmake_autorcc /home/promise/imx6ull_lab/build/apps/demo/CMakeFiles/demo_app_autogen.dir/AutoRcc_resources_QU2567GMYG_Info.json Debug
+  DESC = Automatic RCC for ../../assets/resources.qrc
   restat = 1
 
 
 #############################################
-# Custom command for CMakeFiles/MyQtApp_autogen
+# Custom command for apps/demo/CMakeFiles/demo_app_autogen
 
-build CMakeFiles/MyQtApp_autogen MyQtApp_autogen/mocs_compilation.cpp: CUSTOM_COMMAND
-  COMMAND = cd /home/promise/imx6ull_lab/build && /usr/bin/cmake -E cmake_autogen /home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir/AutogenInfo.json Debug
-  DESC = Automatic MOC and UIC for target MyQtApp
+build apps/demo/CMakeFiles/demo_app_autogen apps/demo/demo_app_autogen/mocs_compilation.cpp: CUSTOM_COMMAND || components/core_utils/core_utils_lib_autogen components/core_utils/libcore_utils_lib.a components/gui_pages/gui_pages_lib_autogen components/gui_pages/libgui_pages_lib.a
+  COMMAND = cd /home/promise/imx6ull_lab/build/apps/demo && /usr/bin/cmake -E cmake_autogen /home/promise/imx6ull_lab/build/apps/demo/CMakeFiles/demo_app_autogen.dir/AutogenInfo.json Debug
+  DESC = Automatic MOC and UIC for target demo_app
   restat = 1
 
 # =============================================================================
 # Target aliases.
+
+build core_utils_lib: phony components/core_utils/libcore_utils_lib.a
+
+build core_utils_lib_autogen: phony components/core_utils/core_utils_lib_autogen
+
+build demo_app: phony apps/demo/demo_app
+
+build demo_app_autogen: phony apps/demo/demo_app_autogen
+
+build gui_pages_lib: phony components/gui_pages/libgui_pages_lib.a
+
+build gui_pages_lib_autogen: phony components/gui_pages/gui_pages_lib_autogen
+
+build libcore_utils_lib.a: phony components/core_utils/libcore_utils_lib.a
+
+build libgui_pages_lib.a: phony components/gui_pages/libgui_pages_lib.a
 
 # =============================================================================
 # Folder targets.
@@ -215,7 +406,28 @@ build CMakeFiles/MyQtApp_autogen MyQtApp_autogen/mocs_compilation.cpp: CUSTOM_CO
 #############################################
 # Folder: /home/promise/imx6ull_lab/build
 
-build all: phony MyQtApp
+build all: phony components/core_utils/all components/gui_pages/all apps/demo/all
+
+# =============================================================================
+
+#############################################
+# Folder: /home/promise/imx6ull_lab/build/apps/demo
+
+build apps/demo/all: phony apps/demo/demo_app
+
+# =============================================================================
+
+#############################################
+# Folder: /home/promise/imx6ull_lab/build/components/core_utils
+
+build components/core_utils/all: phony components/core_utils/libcore_utils_lib.a
+
+# =============================================================================
+
+#############################################
+# Folder: /home/promise/imx6ull_lab/build/components/gui_pages
+
+build components/gui_pages/all: phony components/gui_pages/libgui_pages_lib.a
 
 # =============================================================================
 # Built-in targets
@@ -229,14 +441,14 @@ default all
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../resources.qrc /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5Config.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ModuleLocation.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreMacros.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTsLibPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_CameraBinServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QAlsaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerAudioDecoderServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerCaptureServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerPlayerServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QM3uPlaylistPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QPulseAudioPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake /usr/share/cmake-3.16/Modules/CMakeCCompiler.cmake.in /usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompileFeatures.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineSystem.cmake /usr/share/cmake-3.16/Modules/CMakeFindBinUtils.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake-3.16/Modules/CMakeParseArguments.cmake /usr/share/cmake-3.16/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake-3.16/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake-3.16/Modules/CMakeSystem.cmake.in /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake-3.16/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake-3.16/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-FindBinUtils.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/Compiler/HP-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /usr/share/cmake-3.16/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake-3.16/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XL-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/zOS-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Internal/FeatureTesting.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../apps/demo/CMakeLists.txt ../assets/resources.qrc ../components/core_utils/CMakeLists.txt ../components/gui_pages/CMakeLists.txt /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5Config.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ModuleLocation.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreMacros.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTsLibPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_CameraBinServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QAlsaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerAudioDecoderServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerCaptureServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerPlayerServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QM3uPlaylistPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QPulseAudioPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakeParseArguments.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../resources.qrc /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5Config.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ModuleLocation.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreMacros.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTsLibPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_CameraBinServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QAlsaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerAudioDecoderServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerCaptureServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerPlayerServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QM3uPlaylistPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QPulseAudioPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake /usr/share/cmake-3.16/Modules/CMakeCCompiler.cmake.in /usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompileFeatures.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake-3.16/Modules/CMakeDetermineSystem.cmake /usr/share/cmake-3.16/Modules/CMakeFindBinUtils.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake-3.16/Modules/CMakeParseArguments.cmake /usr/share/cmake-3.16/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake-3.16/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake-3.16/Modules/CMakeSystem.cmake.in /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake-3.16/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake-3.16/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake-3.16/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-FindBinUtils.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/Compiler/HP-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /usr/share/cmake-3.16/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake-3.16/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XL-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/zOS-C-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Internal/FeatureTesting.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../apps/demo/CMakeLists.txt ../assets/resources.qrc ../components/core_utils/CMakeLists.txt ../components/gui_pages/CMakeLists.txt /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5Config.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5/Qt5ModuleLocation.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreMacros.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTsLibPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5MultimediaConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_CameraBinServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QAlsaPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerAudioDecoderServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerCaptureServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QGstreamerPlayerServicePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QM3uPlaylistPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Multimedia/Qt5Multimedia_QPulseAudioPlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5MultimediaWidgets/Qt5MultimediaWidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakeParseArguments.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake: phony
 
 
 #############################################

@@ -1,4 +1,14 @@
 /home/promise/imx6ull_lab/build/CMakeFiles/rebuild_cache.dir
 /home/promise/imx6ull_lab/build/CMakeFiles/edit_cache.dir
-/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp.dir
-/home/promise/imx6ull_lab/build/CMakeFiles/MyQtApp_autogen.dir
+/home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/rebuild_cache.dir
+/home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/edit_cache.dir
+/home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/core_utils_lib.dir
+/home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/core_utils_lib_autogen.dir
+/home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/rebuild_cache.dir
+/home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/edit_cache.dir
+/home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/gui_pages_lib.dir
+/home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/gui_pages_lib_autogen.dir
+/home/promise/imx6ull_lab/build/apps/demo/CMakeFiles/rebuild_cache.dir
+/home/promise/imx6ull_lab/build/apps/demo/CMakeFiles/edit_cache.dir
+/home/promise/imx6ull_lab/build/apps/demo/CMakeFiles/demo_app.dir
+/home/promise/imx6ull_lab/build/apps/demo/CMakeFiles/demo_app_autogen.dir

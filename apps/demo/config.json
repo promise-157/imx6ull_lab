@@ -1,0 +1,17 @@
+{
+    "Window": {
+        "Title": "IMX6ULL Edge Gateway",
+        "Width": 800,
+        "Height": 480,
+        "FullScreen": false
+    },
+    "Hardware": {
+        "LedPath": "/sys/class/leds/sys-led/brightness",
+        "BuzzerPath": "/sys/class/gpio/gpio19/value",
+        "BacklightPath": "/sys/class/backlight/backlight/brightness"
+    },
+    "Network": {
+        "MqttBrokerIP": "127.0.0.1",
+        "MqttPort": 1883
+    }
+}

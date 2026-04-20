@@ -1,0 +1,19 @@
+#VideoPage { background-color: #000000; }
+
+#VideoCanvas { background-color: #000000; border: none; }
+
+#VideoControlBar { 
+    background-color: rgba(20, 20, 20, 180); 
+    border-top: 1px solid #333; 
+}
+
+#VideoPlayBtn[state="play"] { border-image: url(:/res/images/video/play.png); border: none; }
+#VideoPlayBtn[state="pause"] { border-image: url(:/res/images/video/pause.png); border: none; }
+
+#VideoToggleBtn { background-color: #E74C3C; border: none; }
+#VideoToggleBtn[state="closed"] { border-image: url(:/res/images/video/previous.png); }
+#VideoToggleBtn[state="open"] { border-image: url(:/res/images/video/next.png); }
+
+#VideoList { background-color: #111; color: #EEE; border: none; }
+#VideoList::item { height: 45px; border-bottom: 1px solid #222; }
+#VideoList::item:selected { background-color: #E74C3C; color: white; }
