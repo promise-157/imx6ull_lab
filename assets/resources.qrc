@@ -48,6 +48,7 @@
     <file>res/images/hwctrl/buzzer_on.svg</file>
     <file>res/images/hwctrl/buzzer_off.svg</file>
     <file>res/images/hwctrl/sensor.svg</file>
-    <file>res/style/HardwareControlPage_copy.qss</file>
+    <file>res/style/HardwareControlPage.qss</file>
+    <file>res/style/mainwindow.qss</file>
     </qresource>
 </RCC>

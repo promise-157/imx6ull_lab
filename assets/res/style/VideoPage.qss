@@ -1,19 +1,130 @@
-#VideoPage { background-color: #000000; }
+/* ============================================================== */
+/*                     VideoPage 专属样式                          */
+/* ============================================================== */
 
-#VideoCanvas { background-color: #000000; border: none; }
-
-#VideoControlBar { 
-    background-color: rgba(20, 20, 20, 180); 
-    border-top: 1px solid #333; 
+#VideoPage {
+    background-color: #0d0d0d;
+    color: white;
 }
 
-#VideoPlayBtn[state="play"] { border-image: url(:/res/images/video/play.png); border: none; }
-#VideoPlayBtn[state="pause"] { border-image: url(:/res/images/video/pause.png); border: none; }
+#VideoTopBar {
+    background-color: rgba(20, 20, 20, 200);
+}
 
-#VideoToggleBtn { background-color: #E74C3C; border: none; }
-#VideoToggleBtn[state="closed"] { border-image: url(:/res/images/video/previous.png); }
-#VideoToggleBtn[state="open"] { border-image: url(:/res/images/video/next.png); }
+#VideoCloseBtn {
+    border-image: url(:/res/images/video/close_new.png);
+    background: transparent;
+}
+#VideoBackBtn {
+    border-image: url(:/res/images/video/minimize_new.png);
+    background: transparent;
+}
+#VideoBrowseBtn {
+    border-image: url(:/res/images/video/folder_new.png);
+    background: transparent;
+}
+#VideoMenuBtn {
+    border-image: url(:/res/images/video/menu_new.png);
+    background: transparent;
+}
 
-#VideoList { background-color: #111; color: #EEE; border: none; }
-#VideoList::item { height: 45px; border-bottom: 1px solid #222; }
-#VideoList::item:selected { background-color: #E74C3C; color: white; }
+#VideoTopTitle {
+    font-size: 16px;
+    font-weight: bold;
+    background: transparent;
+}
+
+#VideoWidget {
+    background-color: black;
+}
+
+#VideoControlBar {
+    background-color: rgba(30, 30, 30, 255);
+}
+
+#VideoPrevBtn {
+    border-image: url(:/res/images/video/previous.png);
+    background: transparent;
+}
+#VideoNextBtn {
+    border-image: url(:/res/images/video/next.png);
+    background: transparent;
+}
+
+#VideoPlayBtn[isPlaying="false"] {
+    border-image: url(:/res/images/video/play_new.png);
+    background: transparent;
+}
+#VideoPlayBtn[isPlaying="true"] {
+    border-image: url(:/res/images/video/pause_new.png);
+    background: transparent;
+}
+#VideoPlayBtn {
+    border-image: url(:/res/images/video/play_new.png); /* default */
+    background: transparent;
+}
+
+#VideoTimeLabel {
+    color: white;
+    font-family: Monospace;
+    font-size: 12px;
+    background: transparent;
+}
+
+#VideoProgressSlider::groove:horizontal,
+#VideoVolSlider::groove:horizontal {
+    height: 6px;
+    background: #444;
+    border-radius: 3px;
+}
+#VideoProgressSlider::sub-page:horizontal,
+#VideoVolSlider::sub-page:horizontal {
+    background: #3498db;
+    border-radius: 3px;
+}
+#VideoProgressSlider::handle:horizontal,
+#VideoVolSlider::handle:horizontal {
+    background: white;
+    width: 14px;
+    margin: -4px 0;
+    border-radius: 7px;
+}
+
+#VideoVolIcon {
+    border-image: url(:/res/images/video/volumeup.png);
+    background: transparent;
+}
+
+#VideoDrawer {
+    background-color: #1a1a1a;
+    border-left: 1px solid #333;
+}
+
+#VideoListTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ccc;
+    margin-bottom: 10px;
+    background: transparent;
+    border: none;
+}
+
+#VideoFileList {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+#VideoFileList::item {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+#VideoFileList::item:hover {
+    background-color: #2c3e50;
+    border-radius: 5px;
+}
+#VideoFileList::item:selected {
+    background-color: #3498db;
+    border-radius: 5px;
+}

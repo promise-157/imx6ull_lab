@@ -1,0 +1,129 @@
+/* ============================================================== */
+/*                     MainWindow 专属样式                          */
+/* ============================================================== */
+
+#MainWindow {
+    background-color: #1a1a1a;
+}
+
+#SystemTopBar {
+    background-color: #2c3e50;
+    border-bottom: 2px solid #1a252f;
+}
+
+#TopHomeBtn, #TopTermBtn {
+    background: #34495e;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    min-width: 90px;
+}
+#TopHomeBtn:hover, #TopTermBtn:hover {
+    background: #3b536a;
+}
+#TopHomeBtn:pressed, #TopTermBtn:pressed {
+    background: #2c3e50;
+}
+
+#TopExitBtn {
+    background: #c0392b;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+}
+#TopExitBtn:hover { background: #d35400; }
+#TopExitBtn:pressed { background: #e74c3c; }
+
+#DesktopIconBtn {
+    background: #34495e;
+    color: white;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+#DesktopIconBtn:hover { background: #3b536a; }
+#DesktopIconBtn:pressed { background: #2c3e50; }
+
+#TaskBarBtn {
+    background: #27ae60;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#DesktopPage {
+    background-color: #1a1a1a;
+}
+
+#TerminalPage {
+    background-color: #000;
+}
+
+#TerminalDisplay {
+    background-color: #000;
+    color: #00ff00;
+    font-family: Monospace;
+    font-size: 14px;
+    border: none;
+}
+
+#KeyboardContainer {
+    background-color: #222;
+}
+
+#KeyboardBtn {
+    background: #444;
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#KeyboardBtn:pressed {
+    background: #00FF00;
+    color: black;
+}
+
+#KeyboardBtnEnter {
+    background: #1e8449;
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#KeyboardBtnEnter:pressed {
+    background: #00FF00;
+    color: black;
+}
+
+#KeyboardBtnDel {
+    background: #833;
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#KeyboardBtnDel:pressed {
+    background: #00FF00;
+    color: black;
+}
+
+#KeyboardBtnShift[isShifted="true"] {
+    background: #3498db;
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#KeyboardBtnShift[isShifted="false"] {
+    background: #2e5a88;
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#KeyboardBtnShift:pressed {
+    background: #00FF00;
+    color: black;
+}
