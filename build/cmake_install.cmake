@@ -40,6 +40,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/promise/imx6ull_lab/build/components/core_utils/cmake_install.cmake")
+  include("/home/promise/imx6ull_lab/build/components/hal/cmake_install.cmake")
+  include("/home/promise/imx6ull_lab/build/components/service/cmake_install.cmake")
   include("/home/promise/imx6ull_lab/build/components/gui_pages/cmake_install.cmake")
   include("/home/promise/imx6ull_lab/build/apps/demo/cmake_install.cmake")
 

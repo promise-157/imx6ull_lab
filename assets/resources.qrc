@@ -43,6 +43,7 @@
         <file>res/images/video/volumeup.png</file>
         <file>res/style/MusicPage.qss</file>
         <file>res/style/VideoPage.qss</file>
+        <file>res/style/base.qss</file>
     <file>res/images/hwctrl/led_on.svg</file>
     <file>res/images/hwctrl/led_off.svg</file>
     <file>res/images/hwctrl/buzzer_on.svg</file>

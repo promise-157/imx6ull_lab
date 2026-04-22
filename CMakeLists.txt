@@ -51,5 +51,7 @@ find_package(Qt5 COMPONENTS Widgets Core Gui Network Multimedia MultimediaWidget
 # --- 7. 下发任务给所有子目录
 
 add_subdirectory(components/core_utils)
+add_subdirectory(components/hal)
+add_subdirectory(components/service)
 add_subdirectory(components/gui_pages)
 add_subdirectory(apps/demo)

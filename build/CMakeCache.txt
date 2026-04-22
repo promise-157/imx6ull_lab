@@ -235,6 +235,12 @@ core_utils_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;
 //Dependencies for the target
 gui_pages_lib_LIB_DEPENDS:STATIC=general;core_utils_lib;general;Qt5::Widgets;general;Qt5::Multimedia;general;Qt5::Network;general;Qt5::Core;general;Qt5::Gui;general;Qt5::MultimediaWidgets;
 
+//Dependencies for the target
+hal_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;general;Qt5::Widgets;general;Qt5::Multimedia;general;core_utils_lib;
+
+//Dependencies for the target
+service_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;general;Qt5::Widgets;general;core_utils_lib;
+
 
 ########################
 # INTERNAL cache entries
@@ -338,7 +344,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

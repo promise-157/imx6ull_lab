@@ -4,6 +4,14 @@
 /home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/edit_cache.dir
 /home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/core_utils_lib.dir
 /home/promise/imx6ull_lab/build/components/core_utils/CMakeFiles/core_utils_lib_autogen.dir
+/home/promise/imx6ull_lab/build/components/hal/CMakeFiles/rebuild_cache.dir
+/home/promise/imx6ull_lab/build/components/hal/CMakeFiles/edit_cache.dir
+/home/promise/imx6ull_lab/build/components/hal/CMakeFiles/hal_lib.dir
+/home/promise/imx6ull_lab/build/components/hal/CMakeFiles/hal_lib_autogen.dir
+/home/promise/imx6ull_lab/build/components/service/CMakeFiles/rebuild_cache.dir
+/home/promise/imx6ull_lab/build/components/service/CMakeFiles/edit_cache.dir
+/home/promise/imx6ull_lab/build/components/service/CMakeFiles/service_lib.dir
+/home/promise/imx6ull_lab/build/components/service/CMakeFiles/service_lib_autogen.dir
 /home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/rebuild_cache.dir
 /home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/edit_cache.dir
 /home/promise/imx6ull_lab/build/components/gui_pages/CMakeFiles/gui_pages_lib.dir

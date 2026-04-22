@@ -10,4 +10,10 @@ file(REMOVE_RECURSE
   "components/gui_pages/CMakeFiles/gui_pages_lib_autogen.dir/AutogenUsed.txt"
   "components/gui_pages/CMakeFiles/gui_pages_lib_autogen.dir/ParseCache.txt"
   "components/gui_pages/gui_pages_lib_autogen"
+  "components/hal/CMakeFiles/hal_lib_autogen.dir/AutogenUsed.txt"
+  "components/hal/CMakeFiles/hal_lib_autogen.dir/ParseCache.txt"
+  "components/hal/hal_lib_autogen"
+  "components/service/CMakeFiles/service_lib_autogen.dir/AutogenUsed.txt"
+  "components/service/CMakeFiles/service_lib_autogen.dir/ParseCache.txt"
+  "components/service/service_lib_autogen"
 )

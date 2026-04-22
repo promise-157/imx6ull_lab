@@ -4,7 +4,7 @@
 }
 
 /* --- 顶部栏 --- */
-#TopBar {
+#MusicTopBar, #TopBar {
     background-color: transparent;
 }
 #TopTitle {
@@ -12,15 +12,26 @@
     font-size: 20px;
     font-weight: bold;
 }
-#BackBtn, #MinimizeBtn {
-    border-image: url(:/res/images/music/sub-page.png);
+#MusicBackBtn, #BackBtn, #MinimizeBtn {
+    border-image: url(:/res/images/music/minimize_new.png);
     border: none;
     background-color: transparent;
 }
 #BrowseBtn {
-    border-image: url(:/res/images/music/menu.png);
+    border-image: url(:/res/images/music/folder_new.png);
     border: none;
     background-color: transparent;
+}
+#MusicMenuBtn {
+    border-image: url(:/res/images/music/menu_new.png);
+    border: none;
+    background-color: transparent;
+}
+#MusicCloseBtn, #CloseBtn { 
+    border-image: url(:/res/images/music/close_new.png); 
+    background: transparent; 
+    border: none; 
+    outline: none; 
 }
 
 /* --- 抽屉与歌单 --- */
@@ -103,4 +114,4 @@ QPushButton { background-color: transparent; border: none; }
 
 /* 播放按钮逻辑图标切换 */
 #PlayBtn[state="play"] { border-image: url(:/res/images/music/play.png); }
-#PlayBtn[state="pause"] { border-image: url(:/res/images/music/pause.png); }#CloseBtn { qproperty-icon: url(:/res/images/music/close.png); qproperty-iconSize: 24px 24px; background: transparent; border: none; outline: none; }
+#PlayBtn[state="pause"] { border-image: url(:/res/images/music/pause.png); }

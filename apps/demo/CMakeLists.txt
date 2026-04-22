@@ -11,6 +11,8 @@ add_executable(demo_app ${SOURCES} ${RESOURCES})
 target_link_libraries(demo_app PRIVATE 
     gui_pages_lib 
     core_utils_lib
+    service_lib
+    hal_lib
     Qt5::Widgets 
     Qt5::Core 
     Qt5::Gui

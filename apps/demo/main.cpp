@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QFile>
+#include <QThread>
 
 #include "HardwareControlPage.h"
 #include "HardwareMonitorPage.h"
 #include "MusicPage.h"
 #include "VideoPage.h"
+
+// 引入解耦后的Service和HAL
+#include "AudioHal.h"
+#include "MediaService.h"
 
 int main(int argc, char *argv[]) {
   // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -18,6 +23,20 @@ int main(int argc, char *argv[]) {
     a.setStyleSheet(styleSheet);
     file.close();
   }
+
+  // --- 1. 启动全局服务与HAL节点 ---
+  // 它们自己内部封装了QThread，或者我们可以把HAL丢到单独线程去
+  MediaService *mediaSvc =
+      new MediaService(); // MediaService internally spans a worker thread
+
+  // AudioHal也挂载到单独后台线程
+  QThread *audioThread = new QThread();
+  AudioHal *audioHal = new AudioHal();
+  audioHal->moveToThread(audioThread);
+  // 这里没有显式连接 quit和deleteLater，但因为随着app存在，不退出可以不处理
+  audioThread->start();
+
+  // --- 2. 启动UI层 ---
 
   // 实例化新的主窗口系统
   MainWindow w;

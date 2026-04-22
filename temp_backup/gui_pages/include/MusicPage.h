@@ -2,8 +2,7 @@
 #define MUSICPAGE_H
 
 #include "IAppModule.h"
-#include "EventBus.h"
-#include <QVariant>
+#include <QMediaPlayer>
 #include <QListWidget>
 #include <QPushButton>
 #include <QLabel>
@@ -62,7 +61,9 @@ private slots:
     void togglePlayMode();
     void toggleFavorite();
     void changeVolume(int value);
-    void onMediaStatusChanged(int status);
+    void onPositionChanged(qint64 position);
+    void onDurationChanged(qint64 duration);
+    void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
     void onSliderMoved(int position);
 
 private:
@@ -73,6 +74,7 @@ private:
     void updateBtnStyle(QPushButton* btn);
     QString formatTime(qint64 ms);
 
+    QMediaPlayer *m_player;
     bool m_isPlaying = false;
     PlayMode m_playMode = LoopList;
     QString m_currentDir;

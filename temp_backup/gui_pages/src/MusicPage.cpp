@@ -57,6 +57,8 @@ MusicPage::MusicPage(QWidget *parent) : IAppModule(parent) {
   this->setAttribute(Qt::WA_StyledBackground, true);
   this->setObjectName("MusicPage");
 
+  m_player = new QMediaPlayer(this);
+
   initUI();
   initStyle();
   loadSettings();
@@ -82,65 +84,15 @@ MusicPage::MusicPage(QWidget *parent) : IAppModule(parent) {
   connect(m_favoriteBtn, &QPushButton::clicked, this,
           &MusicPage::toggleFavorite);
 
-  // 播放器状态同步由 EventBus 订阅替代
-  EventBus::getInstance()->subscribe(
-      "hal/pub/audio/position", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(
-            this,
-            [this, payload]() {
-              qint64 pos = payload.toLongLong();
-              m_progressSlider->setValue(pos);
-              m_currentTimeLabel->setText(formatTime(pos));
-            },
-            Qt::QueuedConnection);
-      });
-  EventBus::getInstance()->subscribe(
-      "hal/pub/audio/duration", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(
-            this,
-            [this, payload]() {
-              qint64 dur = payload.toLongLong();
-              m_progressSlider->setMaximum(dur);
-              m_totalTimeLabel->setText(formatTime(dur));
-            },
-            Qt::QueuedConnection);
-      });
-  EventBus::getInstance()->subscribe(
-      "hal/pub/audio/status", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(
-            this, [this, payload]() { onMediaStatusChanged(payload.toInt()); },
-            Qt::QueuedConnection);
-      });
-  EventBus::getInstance()->subscribe(
-      "svc/pub/music/list", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(
-            this,
-            [this, payload]() {
-              m_fileList->clear();
-              m_fileList->addItems(payload.toStringList());
-            },
-            Qt::QueuedConnection);
-      });
-  EventBus::getInstance()->subscribe(
-      "svc/pub/music/current_song", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(
-            this,
-            [this, payload]() {
-              int index = payload.toInt();
-              if (index >= 0 && index < m_fileList->count()) {
-                m_fileList->setCurrentRow(index);
-                m_topTitleLabel->setText(m_fileList->item(index)->text());
-                m_isPlaying = true;
-                m_playBtn->setProperty("state", "pause");
-                updateBtnStyle(m_playBtn);
-                m_cdWidget->startRotation();
-              }
-            },
-            Qt::QueuedConnection);
-      });
-
+  // 播放器状态同步
+  connect(m_player, &QMediaPlayer::positionChanged, this,
+          &MusicPage::onPositionChanged);
+  connect(m_player, &QMediaPlayer::durationChanged, this,
+          &MusicPage::onDurationChanged);
   connect(m_progressSlider, &QSlider::sliderMoved, this,
           &MusicPage::onSliderMoved);
+  connect(m_player, &QMediaPlayer::mediaStatusChanged, this,
+          &MusicPage::onMediaStatusChanged);
 }
 
 MusicPage::~MusicPage() {}
@@ -272,6 +224,7 @@ void MusicPage::initUI() {
   m_volumeSlider->setRange(0, 100);
   m_volumeSlider->setValue(50);
   m_volumeSlider->setFixedWidth(80);
+  m_player->setVolume(50);
   connect(m_volumeSlider, &QSlider::valueChanged, this,
           &MusicPage::changeVolume);
 
@@ -317,50 +270,77 @@ void MusicPage::updateBtnStyle(QPushButton *btn) {
 }
 
 void MusicPage::togglePlay() {
-  if (m_fileList->count() == 0)
-    return;
-
-  if (!m_isPlaying && m_fileList->currentRow() < 0) {
-    m_fileList->setCurrentRow(0);
-    onFileSelected(m_fileList->currentItem());
+  if (m_player->mediaStatus() == QMediaPlayer::NoMedia ||
+      m_fileList->count() == 0) {
+    if (m_fileList->count() > 0 && m_fileList->currentRow() < 0) {
+      m_fileList->setCurrentRow(0);
+      onFileSelected(m_fileList->currentItem());
+    }
     return;
   }
 
-  if (m_isPlaying) {
-    EventBus::getInstance()->publish("hal/req/audio/pause");
+  if (m_player->state() == QMediaPlayer::PlayingState) {
+    m_player->pause();
     m_isPlaying = false;
     m_cdWidget->stopRotation();
   } else {
-    // Resume or play new
-    EventBus::getInstance()->publish("hal/req/audio/play");
+    m_player->play();
     m_isPlaying = true;
     m_cdWidget->startRotation();
   }
+
   m_playBtn->setProperty("state", m_isPlaying ? "pause" : "play");
   updateBtnStyle(m_playBtn);
 }
 
 void MusicPage::playNext(bool isAutoPlay) {
-  EventBus::getInstance()->publish(
-      "svc/req/music/next", QVariant::fromValue(static_cast<int>(m_playMode)));
+  if (m_fileList->count() == 0)
+    return;
+  int currentRow = m_fileList->currentRow();
+  if (currentRow < 0)
+    currentRow = 0;
+
+  int nextRow = currentRow;
+
+  if (isAutoPlay && m_playMode == LoopSingle) {
+    nextRow = currentRow;
+  } else if (m_playMode == Random) {
+    nextRow = QRandomGenerator::global()->bounded(m_fileList->count());
+  } else {
+    nextRow = (currentRow + 1) % m_fileList->count();
+  }
+
+  m_fileList->setCurrentRow(nextRow);
+  onFileSelected(m_fileList->currentItem());
 }
 
 void MusicPage::playPrevious() {
-  EventBus::getInstance()->publish(
-      "svc/req/music/prev", QVariant::fromValue(static_cast<int>(m_playMode)));
+  if (m_fileList->count() == 0)
+    return;
+  int currentRow = m_fileList->currentRow();
+  int prevRow =
+      (currentRow - 1 >= 0) ? currentRow - 1 : m_fileList->count() - 1;
+  m_fileList->setCurrentRow(prevRow);
+  onFileSelected(m_fileList->currentItem());
 }
 
 void MusicPage::onFileSelected(QListWidgetItem *item) {
   if (!item)
     return;
-  int index = m_fileList->row(item);
-  EventBus::getInstance()->publish("svc/req/music/play_index",
-                                   QVariant::fromValue(index));
+  QString path = m_currentDir + "/" + item->text();
+  m_player->setMedia(QUrl::fromLocalFile(path));
+  m_topTitleLabel->setText(item->text());
+
+  m_player->play();
+  m_isPlaying = true;
+  m_playBtn->setProperty("state", "pause");
+  updateBtnStyle(m_playBtn);
+
+  m_cdWidget->startRotation();
 }
 
-void MusicPage::onMediaStatusChanged(int status) {
-  // 7 is QMediaPlayer::EndOfMedia. If we pass 7 from AudioHal
-  if (status == 7) {
+void MusicPage::onMediaStatusChanged(QMediaPlayer::MediaStatus status) {
+  if (status == QMediaPlayer::EndOfMedia) {
     playNext(true);
   }
 }
@@ -390,8 +370,7 @@ void MusicPage::toggleFavorite() {
 }
 
 void MusicPage::changeVolume(int value) {
-  EventBus::getInstance()->publish("hal/req/audio/volume",
-                                   QVariant::fromValue(value));
+  m_player->setVolume(value);
   if (value == 0) {
     m_volumeBtn->setProperty("state", "off");
   } else {
@@ -410,10 +389,19 @@ QString MusicPage::formatTime(qint64 ms) {
       .arg(seconds, 2, 10, QChar('0'));
 }
 
-void MusicPage::onSliderMoved(int position) {
-  EventBus::getInstance()->publish("hal/req/audio/seek",
-                                   QVariant::fromValue((qint64)position));
+void MusicPage::onPositionChanged(qint64 position) {
+  if (!m_progressSlider->isSliderDown()) {
+    m_progressSlider->setValue(position);
+  }
+  m_currentTimeLabel->setText(formatTime(position));
 }
+
+void MusicPage::onDurationChanged(qint64 duration) {
+  m_progressSlider->setRange(0, duration);
+  m_totalTimeLabel->setText(formatTime(duration));
+}
+
+void MusicPage::onSliderMoved(int position) { m_player->setPosition(position); }
 
 void MusicPage::loadSettings() {
   QSettings set(QCoreApplication::applicationDirPath() + "/config.ini",
@@ -430,8 +418,9 @@ void MusicPage::saveSettings(QString path) {
 }
 
 void MusicPage::scanMediaFiles() {
-  EventBus::getInstance()->publish("svc/req/music/scan",
-                                   QVariant::fromValue(m_currentDir));
+  QDir dir(m_currentDir);
+  m_fileList->clear();
+  m_fileList->addItems(dir.entryList({"*.mp3", "*.wav"}, QDir::Files));
 }
 
 void MusicPage::changeMediaDir() {
@@ -447,9 +436,9 @@ void MusicPage::changeMediaDir() {
 void MusicPage::toggleDrawer() { m_drawer->setVisible(!m_drawer->isVisible()); }
 void MusicPage::forceStop() {
   if (m_isPlaying) {
-    EventBus::getInstance()->publish("hal/req/audio/stop");
+    m_player->stop();
     m_isPlaying = false;
-    m_playBtn->setProperty("state", "play");
+    m_playBtn->setProperty("playing", false);
     updateBtnStyle(m_playBtn);
     m_cdWidget->stopRotation();
   }
