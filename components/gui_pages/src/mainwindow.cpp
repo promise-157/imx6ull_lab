@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QGridLayout>
+#include <QIcon>
 #include <QLabel>
 #include <QScrollBar>
 #include <QStyle>
@@ -85,6 +86,10 @@ void MainWindow::registerApp(IAppModule *app) {
       110,
       110); // 缩小图标尺寸以适应IMX6ULL常见的分辨率(480x272等)，防止撑爆屏幕导致不能全屏
   iconBtn->setObjectName("DesktopIconBtn");
+  if (!app->appIconPath().isEmpty()) {
+    iconBtn->setIcon(QIcon(app->appIconPath()));
+    iconBtn->setIconSize(QSize(52, 52));
+  }
 
   // 点击图标触发：打开应用并切换焦点
   connect(iconBtn, &QPushButton::clicked, this, [this, appIndex, app]() {

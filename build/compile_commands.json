@@ -43,14 +43,38 @@
 
 {
   "directory": "/home/promise/imx6ull_lab/build",
+  "command": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -Icomponents/hal/hal_lib_autogen/include -I../components/hal/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork  -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z -o components/hal/CMakeFiles/hal_lib.dir/src/HardwareHal.cpp.o -c /home/promise/imx6ull_lab/components/hal/src/HardwareHal.cpp",
+  "file": "/home/promise/imx6ull_lab/components/hal/src/HardwareHal.cpp"
+},
+
+{
+  "directory": "/home/promise/imx6ull_lab/build",
+  "command": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -Icomponents/hal/hal_lib_autogen/include -I../components/hal/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork  -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z -o components/hal/CMakeFiles/hal_lib.dir/src/VideoHal.cpp.o -c /home/promise/imx6ull_lab/components/hal/src/VideoHal.cpp",
+  "file": "/home/promise/imx6ull_lab/components/hal/src/VideoHal.cpp"
+},
+
+{
+  "directory": "/home/promise/imx6ull_lab/build",
   "command": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -Icomponents/service/service_lib_autogen/include -I../components/service/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui  -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z -o components/service/CMakeFiles/service_lib.dir/service_lib_autogen/mocs_compilation.cpp.o -c /home/promise/imx6ull_lab/build/components/service/service_lib_autogen/mocs_compilation.cpp",
   "file": "/home/promise/imx6ull_lab/build/components/service/service_lib_autogen/mocs_compilation.cpp"
 },
 
 {
   "directory": "/home/promise/imx6ull_lab/build",
+  "command": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -Icomponents/service/service_lib_autogen/include -I../components/service/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui  -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z -o components/service/CMakeFiles/service_lib.dir/src/HardwareService.cpp.o -c /home/promise/imx6ull_lab/components/service/src/HardwareService.cpp",
+  "file": "/home/promise/imx6ull_lab/components/service/src/HardwareService.cpp"
+},
+
+{
+  "directory": "/home/promise/imx6ull_lab/build",
   "command": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -Icomponents/service/service_lib_autogen/include -I../components/service/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui  -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z -o components/service/CMakeFiles/service_lib.dir/src/MediaService.cpp.o -c /home/promise/imx6ull_lab/components/service/src/MediaService.cpp",
   "file": "/home/promise/imx6ull_lab/components/service/src/MediaService.cpp"
+},
+
+{
+  "directory": "/home/promise/imx6ull_lab/build",
+  "command": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi  -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -Icomponents/service/service_lib_autogen/include -I../components/service/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui  -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z -o components/service/CMakeFiles/service_lib.dir/src/VideoService.cpp.o -c /home/promise/imx6ull_lab/components/service/src/VideoService.cpp",
+  "file": "/home/promise/imx6ull_lab/components/service/src/VideoService.cpp"
 },
 
 {

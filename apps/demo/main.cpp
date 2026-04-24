@@ -10,6 +10,7 @@
 // 引入系统架构支撑
 #include "LoggerManager.h"
 #include "SystemManager.h"
+#include "ConfigManager.h"
 
 // 引入应用级装配清单，实现与具体底层类的绝对隔离
 #include "AppBootstrap.h"
@@ -22,6 +23,10 @@ int main(int argc, char *argv[]) {
   // --- 1. 激活工业级日志监控 ---
   LoggerManager::instance().init("./logs");
   qInfo() << "[Main] Application starting...";
+
+  // --- 1.5 加载全局默认配置（JSON） ---
+  ConfigManager::instance().loadConfig(QCoreApplication::applicationDirPath() +
+                                       "/config.json");
 
   // --- 2. 聚合注册所有子系统（黑盒装配） ---
   AppBootstrap::initAllSubsystems();

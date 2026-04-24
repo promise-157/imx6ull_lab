@@ -38,7 +38,7 @@ public:
 
     // ----- IAppModule 必须实现的接口 -----
     QString appName() const override { return "音乐播放器"; }
-    QString appIconPath() const override { return ":/res/images/music/play.png"; }
+    QString appIconPath() const override { return ":/res/images/app_icons/music.png"; }
     void stopService() override { forceStop(); }
     // ------------------------------------
 

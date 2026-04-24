@@ -22,11 +22,15 @@ public:
   void stopAll();
 
 private:
+  struct ManagedModule {
+    ILifecycleModule *module = nullptr;
+    QThread *thread = nullptr; // nullptr 表示运行在主线程
+  };
+
   SystemManager() = default;
   ~SystemManager();
 
-  QList<ILifecycleModule *> m_modules;
-  QList<QThread *> m_threads;
+  QList<ManagedModule> m_managedModules;
   bool m_isRunning = false;
 };
 

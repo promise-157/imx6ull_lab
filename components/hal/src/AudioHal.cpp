@@ -32,36 +32,41 @@ void AudioHal::onStart() {
                 "hal/pub/audio/status",
                 QVariant::fromValue(static_cast<int>(status)));
           });
+  connect(m_player, &QMediaPlayer::stateChanged, this,
+          [this](QMediaPlayer::State state) {
+            EventBus::getInstance()->publish(
+                "hal/pub/audio/state",
+                QVariant::fromValue(static_cast<int>(state)));
+          });
 
   EventBus::getInstance()->subscribe(
       "hal/req/audio/play", this, [this](const QVariant &payload) {
         if (payload.type() == QVariant::String) {
-          QMetaObject::invokeMethod(this, "doPlay", Qt::QueuedConnection,
-                                    Q_ARG(QString, payload.toString()));
+          doPlay(payload.toString());
         } else {
-          QMetaObject::invokeMethod(this, "doResume", Qt::QueuedConnection);
+          doResume();
         }
       });
 
   EventBus::getInstance()->subscribe(
       "hal/req/audio/pause", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "doPause", Qt::QueuedConnection);
+        Q_UNUSED(payload);
+        doPause();
       });
 
   EventBus::getInstance()->subscribe(
       "hal/req/audio/stop", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "doStop", Qt::QueuedConnection);
+        Q_UNUSED(payload);
+        doStop();
       });
 
   EventBus::getInstance()->subscribe(
       "hal/req/audio/seek", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "doSeek", Qt::QueuedConnection,
-                                  Q_ARG(qint64, payload.toLongLong()));
+        doSeek(payload.toLongLong());
       });
   EventBus::getInstance()->subscribe(
       "hal/req/audio/volume", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "doSetVolume", Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
+        doSetVolume(payload.toInt());
       });
 
   qInfo() << "[AudioHal] Started successfully in thread:"
@@ -83,17 +88,39 @@ void AudioHal::onStop() {
 }
 
 void AudioHal::doPlay(const QString &urlStr) {
+  if (!m_player || !m_playlist)
+    return;
   m_playlist->clear();
   m_playlist->addMedia(QUrl::fromLocalFile(urlStr));
   m_playlist->setCurrentIndex(0);
   m_player->play();
 }
 
-void AudioHal::doResume() { m_player->play(); }
+void AudioHal::doResume() {
+  if (!m_player)
+    return;
+  m_player->play();
+}
 
-void AudioHal::doPause() { m_player->pause(); }
+void AudioHal::doPause() {
+  if (!m_player)
+    return;
+  m_player->pause();
+}
 
-void AudioHal::doStop() { m_player->stop(); }
+void AudioHal::doStop() {
+  if (!m_player)
+    return;
+  m_player->stop();
+}
 
-void AudioHal::doSeek(qint64 pos) { m_player->setPosition(pos); }
-void AudioHal::doSetVolume(int vol) { m_player->setVolume(vol); }
+void AudioHal::doSeek(qint64 pos) {
+  if (!m_player)
+    return;
+  m_player->setPosition(pos);
+}
+void AudioHal::doSetVolume(int vol) {
+  if (!m_player)
+    return;
+  m_player->setVolume(vol);
+}

@@ -20,7 +20,7 @@ public:
     ~VideoPage() override = default;
 
     QString appName() const override { return "视频播放器"; }
-    QString appIconPath() const override { return ""; }
+    QString appIconPath() const override { return ":/res/images/app_icons/video.png"; }
     void stopService() override { 
         if (m_player) m_player->stop(); 
     }
@@ -43,10 +43,8 @@ private slots:
     void onSliderMoved(int position);
 
 private:
-    void initStyle();
     void loadSettings();
     void saveSettings(QString path);
-    void updateBtnStyle(QPushButton* btn);
     QString formatTime(qint64 ms);
 
     QPushButton *m_backBtn;

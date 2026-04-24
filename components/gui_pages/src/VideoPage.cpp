@@ -1,6 +1,6 @@
 #include "VideoPage.h"
+#include "EventBus.h"
 #include <QCoreApplication>
-#include <QDir>
 #include <QFile>
 #include <QFileDialog>
 #include <QSettings>
@@ -178,12 +178,46 @@ VideoPage::VideoPage(QWidget *parent) : IAppModule(parent) {
           &VideoPage::onDurationChanged);
   connect(m_progressSlider, &QSlider::sliderMoved, this,
           &VideoPage::onSliderMoved);
+  connect(m_player, &QMediaPlayer::mediaStatusChanged, this,
+          [this](QMediaPlayer::MediaStatus status) {
+            if (status == QMediaPlayer::EndOfMedia) {
+              playNext();
+            }
+          });
 
   connect(m_backBtn, &QPushButton::clicked, this, &VideoPage::requestMinimize);
   connect(m_closeBtn, &QPushButton::clicked, this, [this]() {
     m_player->stop();
     emit requestClose();
   });
+
+  EventBus::getInstance()->subscribe(
+      "svc/pub/video/list", this, [this](const QVariant &payload) {
+        m_fileList->clear();
+        m_fileList->addItems(payload.toStringList());
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/pub/video/current_index", this, [this](const QVariant &payload) {
+        const int index = payload.toInt();
+        if (index >= 0 && index < m_fileList->count()) {
+          m_fileList->setCurrentRow(index);
+          m_topTitleLabel->setText(m_fileList->item(index)->text());
+        }
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/pub/video/play_path", this, [this](const QVariant &payload) {
+        const QString filePath = payload.toString();
+        if (filePath.isEmpty())
+          return;
+        m_player->setMedia(QUrl::fromLocalFile(filePath));
+        m_player->play();
+        m_isPlaying = true;
+        m_playBtn->setProperty("isPlaying", true);
+        m_playBtn->style()->unpolish(m_playBtn);
+        m_playBtn->style()->polish(m_playBtn);
+      });
 
   loadSettings();
   scanVideoFiles();
@@ -219,29 +253,19 @@ void VideoPage::togglePlay() {
 void VideoPage::toggleDrawer() { m_drawer->setVisible(!m_drawer->isVisible()); }
 
 void VideoPage::onFileSelected(QListWidgetItem *item) {
-  m_player->setMedia(QUrl::fromLocalFile(m_currentDir + "/" + item->text()));
-  m_player->play();
-  m_isPlaying = true;
-  m_playBtn->setProperty("isPlaying", true);
-  m_playBtn->style()->unpolish(m_playBtn);
-  m_playBtn->style()->polish(m_playBtn);
-  m_topTitleLabel->setText(item->text());
+  if (!item)
+    return;
+  const int index = m_fileList->row(item);
+  EventBus::getInstance()->publish("svc/req/video/play_index",
+                                   QVariant::fromValue(index));
 }
 
 void VideoPage::playNext() {
-  int curRow = m_fileList->currentRow();
-  if (curRow < m_fileList->count() - 1) {
-    m_fileList->setCurrentRow(curRow + 1);
-    onFileSelected(m_fileList->currentItem());
-  }
+  EventBus::getInstance()->publish("svc/req/video/next");
 }
 
 void VideoPage::playPrevious() {
-  int curRow = m_fileList->currentRow();
-  if (curRow > 0) {
-    m_fileList->setCurrentRow(curRow - 1);
-    onFileSelected(m_fileList->currentItem());
-  }
+  EventBus::getInstance()->publish("svc/req/video/prev");
 }
 
 void VideoPage::changeVolume(int value) { m_player->setVolume(value); }
@@ -285,9 +309,8 @@ void VideoPage::saveSettings(QString path) {
 }
 
 void VideoPage::scanVideoFiles() {
-  QDir dir(m_currentDir);
-  m_fileList->clear();
-  m_fileList->addItems(dir.entryList({"*.mp4", "*.avi", "*.mkv"}, QDir::Files));
+  EventBus::getInstance()->publish("svc/req/video/scan",
+                                   QVariant::fromValue(m_currentDir));
 }
 
 void VideoPage::changeVideoDir() {

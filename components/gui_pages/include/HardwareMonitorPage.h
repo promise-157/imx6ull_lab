@@ -69,7 +69,7 @@ private slots:
 private:
     void initResourceTree();
     void loadRunningProcesses();
-    void updateChannelFromProbe(const QString& channel);
+    void updateChannelFromProbe(const QString& channel, int ownerPid = -1);
 
     WaveformPlotWidget* m_plotWidget;
     QScrollArea* m_scrollArea;
@@ -85,9 +85,11 @@ private:
     
     QTreeWidgetItem* m_appRoot;
     QTreeWidgetItem* m_hardwareRoot;
+    QTreeWidgetItem* m_scriptRoot;
     
     // 映射表：pid -> tree item
     QMap<int, QTreeWidgetItem*> m_procItems;
+    bool m_udpBindOk = false;
 };
 
 // ==========================
@@ -120,7 +122,7 @@ public:
     ~HardwareMonitorPage() override;
 
     QString appName() const override { return QString::fromUtf8("硬件监控中心"); }
-    QString appIconPath() const override { return QString::fromUtf8(":/res/images/hardware/monitor_icon.png"); }
+    QString appIconPath() const override { return QString::fromUtf8(":/res/images/app_icons/monitor.png"); }
     void stopService() override;
 
 private:

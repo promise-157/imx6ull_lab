@@ -1,4 +1,5 @@
 #include "HardwareControlPage.h"
+#include "EventBus.h"
 #include <QDebug>
 #include <QFile>
 #include <QGridLayout>
@@ -21,43 +22,45 @@ HardwareControlPage::HardwareControlPage(QWidget *parent)
 
   setupUI();
 
-  // 默认开机初始化 (如果权限足的话) 并加载初始环境传感器数据
-  m_sensorTimer = new QTimer(this);
-  connect(m_sensorTimer, &QTimer::timeout, this,
-          &HardwareControlPage::readSensors);
+  EventBus::getInstance()->subscribe(
+      "svc/pub/hw/led_state", this, [this](const QVariant &payload) {
+        m_ledState = payload.toBool();
+        m_ledBtn->setProperty("isOn", m_ledState);
+        style()->unpolish(m_ledBtn);
+        style()->polish(m_ledBtn);
+      });
 
-  // 打开定时器开始 500ms 一次轮询传感器
-  m_sensorTimer->start(500);
+  EventBus::getInstance()->subscribe(
+      "svc/pub/hw/buzzer_state", this, [this](const QVariant &payload) {
+        m_buzzerState = payload.toBool();
+        m_buzzerBtn->setProperty("isOn", m_buzzerState);
+        style()->unpolish(m_buzzerBtn);
+        style()->polish(m_buzzerBtn);
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/pub/hw/sensor/als", this, [this](const QVariant &payload) {
+        m_ambientLightLabel->setText(
+            QString("环境光强 (ALS): %1 lux").arg(payload.toString()));
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/pub/hw/sensor/ps", this, [this](const QVariant &payload) {
+        m_proximityLabel->setText(
+            QString("距离感应 (PS): %1").arg(payload.toString()));
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/pub/hw/sensor/imu", this, [this](const QVariant &payload) {
+        m_imuDataLabel->setText(
+            QString("ICM20608 陀螺仪: %1").arg(payload.toString()));
+      });
 }
 
 HardwareControlPage::~HardwareControlPage() { stopService(); }
 
 void HardwareControlPage::stopService() {
-  if (m_sensorTimer->isActive()) {
-    m_sensorTimer->stop();
-  }
-}
-
-void HardwareControlPage::writeSysFs(const QString &path, const QString &val) {
-  QFile file(path);
-  if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-    QTextStream out(&file);
-    out << val;
-    file.close();
-  } else {
-    qDebug() << "Failed to write to sysfs:" << path;
-  }
-}
-
-QString HardwareControlPage::readSysFs(const QString &path) {
-  QFile file(path);
-  if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    QTextStream in(&file);
-    QString data = in.readAll().trimmed();
-    file.close();
-    return data;
-  }
-  return QString("");
+  // UI 页面停止时无需直接管理底层硬件轮询线程
 }
 
 void HardwareControlPage::setupUI() {
@@ -173,60 +176,18 @@ void HardwareControlPage::setupUI() {
 }
 
 void HardwareControlPage::toggleLed() {
-  m_ledState = !m_ledState;
-  if (m_ledState) {
-    // 设置 UI 和真实硬件节点状态 (绝大数正点原子等引脚分配方式)
-    m_ledBtn->setProperty("isOn", true);
-    writeSysFs("/sys/class/leds/sys-led/brightness", "1");
-  } else {
-    m_ledBtn->setProperty("isOn", false);
-    writeSysFs("/sys/class/leds/sys-led/brightness", "0");
-  }
-  // 强制刷新样式以应用属性变化
-  style()->unpolish(m_ledBtn);
-  style()->polish(m_ledBtn);
+  EventBus::getInstance()->publish("svc/req/hw/led_toggle");
 }
 
 void HardwareControlPage::toggleBuzzer() {
-  m_buzzerState = !m_buzzerState;
-  if (m_buzzerState) {
-    m_buzzerBtn->setProperty("isOn", true);
-    // 假设蜂鸣器被映射到 gpio_7 or sysfs
-    writeSysFs("/sys/class/gpio/beep/value", "1");
-  } else {
-    m_buzzerBtn->setProperty("isOn", false);
-    writeSysFs("/sys/class/gpio/beep/value", "0");
-  }
-  style()->unpolish(m_buzzerBtn);
-  style()->polish(m_buzzerBtn);
+  EventBus::getInstance()->publish("svc/req/hw/buzzer_toggle");
 }
 
 void HardwareControlPage::onBacklightChanged(int value) {
-  // value 范围 10-100（避免屏幕黑掉看不见）
-  int safeVal = qMax(1, value);
-  // 这里假设 maximum_brightness = 100 或者
-  // 255。我们在板子上测试可改为适合的值。 这里做基础占位
-  writeSysFs("/sys/class/backlight/backlight/brightness",
-             QString::number(safeVal));
+  EventBus::getInstance()->publish("svc/req/hw/backlight_set",
+                                   QVariant::fromValue(value));
 }
 
 void HardwareControlPage::readSensors() {
-  // 假设板子有 AP3216C 挂在 I2C1 设备名为 ap3216c
-  // 真机路径通常类似 /sys/bus/i2c/devices/1-001e/als 或者通过 input subsystem
-  // 我们在这里使用一种容错的读取模拟：先尝试读取真机，失败则显示模拟跳动值
-
-  QString alsStr = readSysFs("/sys/bus/i2c/devices/1-001e/als");
-  if (!alsStr.isEmpty()) {
-    m_ambientLightLabel->setText(QString("环境光强 (ALS): %1 lux").arg(alsStr));
-  } else {
-    // 如果文件不存在（如在虚拟机运行），产生轻量随机干扰展示动态效果
-    m_ambientLightLabel->setText(
-        QString("休眠/未接传感器 (ALS): %1 lux模拟").arg(100 + rand() % 50));
-    m_proximityLabel->setText(QString::fromUtf8("休眠/未接传感器 (PS): 较远"));
-    m_imuDataLabel->setText(
-        QString(
-            "陀螺仪震动模拟: [x:%1 , y: %2 , z: 9.8]  (无真实 I2C 总线回传)")
-            .arg((rand() % 10 - 5) / 10.0)
-            .arg((rand() % 10 - 5) / 10.0));
-  }
+  // 传感器读取已下沉到 HardwareService
 }

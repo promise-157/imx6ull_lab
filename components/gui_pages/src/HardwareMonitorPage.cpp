@@ -1,4 +1,5 @@
 #include "HardwareMonitorPage.h"
+#include "EventBus.h"
 #include <QPainter>
 #include <QDateTime>
 #include <QPen>
@@ -7,6 +8,7 @@
 #include <QDir>
 #include <QTextStream>
 #include <QHeaderView>
+#include <QDebug>
 
 // ==========================================
 // 1. 核心波形绘制组件 (绘图区)
@@ -173,6 +175,37 @@ LogicAnalyzerView::LogicAnalyzerView(QWidget* parent) : QWidget(parent), m_plotW
     initResourceTree();
     connect(m_resourceTree, &QTreeWidget::itemChanged, this, &LogicAnalyzerView::onItemChanged);
     connect(m_resourceTree, &QTreeWidget::itemSelectionChanged, this, &LogicAnalyzerView::onTreeSelectionChanged);
+
+    // 直接板级数据链路：通过 Service/HAL 事件输入，不依赖 UDP 脚本。
+    EventBus::getInstance()->subscribe(
+        "svc/pub/hw/led_state", this, [this](const QVariant& payload) {
+            if (m_plotWidget) {
+                m_plotWidget->pushSample("GPIO1_IO03 (sys-led)", payload.toBool() ? 1 : 0);
+            }
+        });
+    EventBus::getInstance()->subscribe(
+        "svc/pub/hw/buzzer_state", this, [this](const QVariant& payload) {
+            if (m_plotWidget) {
+                m_plotWidget->pushSample("GPIO5_IO01 (beep)", payload.toBool() ? 1 : 0);
+            }
+        });
+    EventBus::getInstance()->subscribe(
+        "svc/pub/hw/sensor/als", this, [this](const QVariant& payload) {
+            bool ok = false;
+            int lux = payload.toString().toInt(&ok);
+            int level = (ok && lux >= 120) ? 1 : 0;
+            if (m_plotWidget) {
+                m_plotWidget->pushSample("AP3216C_ALS", level);
+            }
+        });
+    EventBus::getInstance()->subscribe(
+        "svc/pub/hw/sensor/ps", this, [this](const QVariant& payload) {
+            const QString ps = payload.toString();
+            int level = (ps.contains(QString::fromUtf8("近")) || ps.contains("near")) ? 1 : 0;
+            if (m_plotWidget) {
+                m_plotWidget->pushSample("AP3216C_PS", level);
+            }
+        });
     
     // ==== 右侧面板 ====
     m_scrollArea = new QScrollArea(this);
@@ -204,12 +237,15 @@ void LogicAnalyzerView::initResourceTree() {
     m_hardwareRoot->setFlags(m_hardwareRoot->flags() & ~Qt::ItemIsUserCheckable); 
     m_hardwareRoot->setForeground(0, QBrush(QColor("#cc5500")));
     
-    QStringList imx6HWList = { 
-        "GPIO1_IO03 (LED)", "GPIO4_IO15 (Buzzer)", "I2C1_SCL", "I2C1_SDA" 
-    };
+    QStringList imx6HWList = {
+        "GPIO1_IO03 (sys-led)", "GPIO5_IO01 (beep)", "AP3216C_ALS",
+        "AP3216C_PS"};
     for(const QString& hw : imx6HWList) {
         QTreeWidgetItem* item = new QTreeWidgetItem(m_hardwareRoot, QStringList(hw));
         item->setCheckState(0, Qt::Unchecked);
+        if (m_plotWidget) {
+            m_plotWidget->setChannelVisible(hw, false);
+        }
     }
     
     m_appRoot = new QTreeWidgetItem(m_resourceTree, QStringList(QString::fromUtf8("本机进程探针注入 (运行中)")));
@@ -217,16 +253,22 @@ void LogicAnalyzerView::initResourceTree() {
     m_appRoot->setForeground(0, QBrush(QColor("#0055ff")));
     
     // 强制静态测试项，为了演示无论如何可以被启动
-    QTreeWidgetItem* shApp = new QTreeWidgetItem(m_resourceTree, QStringList(QString::fromUtf8("★ 本地挂载脚本 (手动启动)")));
-    shApp->setFlags(shApp->flags() & ~Qt::ItemIsUserCheckable);
-    shApp->setForeground(0, QBrush(QColor("#cc00cc")));
-    shApp->setData(0, Qt::UserRole, "test_hw_probe.sh"); // 自定义特殊标记数据
+    m_scriptRoot = new QTreeWidgetItem(m_resourceTree, QStringList(QString::fromUtf8("★ 本地挂载脚本 (手动启动)")));
+    m_scriptRoot->setFlags(m_scriptRoot->flags() & ~Qt::ItemIsUserCheckable);
+    m_scriptRoot->setForeground(0, QBrush(QColor("#cc00cc")));
+    m_scriptRoot->setData(0, Qt::UserRole, "test_hw_probe.sh"); // 自定义特殊标记数据
     
     // 添加默认子变量
-    QTreeWidgetItem* var1 = new QTreeWidgetItem(shApp, QStringList("GPIO1_IO3"));
+    QTreeWidgetItem* var1 = new QTreeWidgetItem(m_scriptRoot, QStringList("GPIO1_IO3"));
     var1->setCheckState(0, Qt::Unchecked);
-    QTreeWidgetItem* var2 = new QTreeWidgetItem(shApp, QStringList("SPI_CLK"));
+    if (m_plotWidget) {
+        m_plotWidget->setChannelVisible("GPIO1_IO3", false);
+    }
+    QTreeWidgetItem* var2 = new QTreeWidgetItem(m_scriptRoot, QStringList("SPI_CLK"));
     var2->setCheckState(0, Qt::Unchecked);
+    if (m_plotWidget) {
+        m_plotWidget->setChannelVisible("SPI_CLK", false);
+    }
     
     m_resourceTree->expandAll();
 }
@@ -235,7 +277,8 @@ void LogicAnalyzerView::loadRunningProcesses() {
     // 除了基础项，我们将动态读取 /proc 把允许被监听的测试进程显示出来
     int count = m_appRoot->childCount();
     for (int i = count - 1; i >= 0; --i) {
-         m_appRoot->removeChild(m_appRoot->child(i));
+         QTreeWidgetItem* item = m_appRoot->takeChild(i);
+         delete item;
     }
     m_procItems.clear();
     
@@ -336,27 +379,41 @@ void LogicAnalyzerView::onItemChanged(QTreeWidgetItem* item, int column) {
     }
 }
 
-void LogicAnalyzerView::updateChannelFromProbe(const QString& channel) {
-    // 当 UDP 收到新通道时，动态添加到“本地挂载脚本”的树下
-    for(int i = 0; i < m_resourceTree->topLevelItemCount(); ++i) {
-        QTreeWidgetItem* top = m_resourceTree->topLevelItem(i);
-        if(top->text(0).contains(QString::fromUtf8("本地挂载脚本"))) {
-            for(int j=0; j<top->childCount(); ++j) {
-                if(top->child(j)->text(0) == channel) return; 
-            }
-            QTreeWidgetItem* newItem = new QTreeWidgetItem(top, QStringList(channel));
-            newItem->setCheckState(0, Qt::Checked); // 新收到的自动打开监控并在界面打勾
-            m_plotWidget->setChannelVisible(channel, true);
-            return;
-        }
+void LogicAnalyzerView::updateChannelFromProbe(const QString& channel, int ownerPid) {
+    QTreeWidgetItem* parentItem = nullptr;
+    if (ownerPid > 0 && m_procItems.contains(ownerPid)) {
+        parentItem = m_procItems.value(ownerPid);
+    } else {
+        parentItem = m_scriptRoot;
     }
+    if (!parentItem) return;
+
+    // 清理进程节点下的占位提示
+    if (parentItem != m_scriptRoot && parentItem->childCount() == 1 &&
+        parentItem->child(0)->text(0).contains(QString::fromUtf8("等待进程发来变量"))) {
+        QTreeWidgetItem* placeholder = parentItem->takeChild(0);
+        delete placeholder;
+    }
+
+    for(int j = 0; j < parentItem->childCount(); ++j) {
+        if(parentItem->child(j)->text(0) == channel) return;
+    }
+
+    QTreeWidgetItem* newItem = new QTreeWidgetItem(parentItem, QStringList(channel));
+    newItem->setCheckState(0, Qt::Checked); // 新收到的自动打开监控并在界面打勾
+    m_plotWidget->setChannelVisible(channel, true);
 }
 
 void LogicAnalyzerView::startMonitor() {
+    // UDP 仅作为外部探针扩展输入；板级监测主链路来自 EventBus(svc/pub/hw/*)。
     if (!m_udpSocket) {
         m_udpSocket = new QUdpSocket(this);
-        if(m_udpSocket->bind(QHostAddress::Any, 9090)) {
+        m_udpBindOk = m_udpSocket->bind(QHostAddress::Any, 9090);
+        if(m_udpBindOk) {
             connect(m_udpSocket, &QUdpSocket::readyRead, this, &LogicAnalyzerView::onReadyReadUdp);
+        } else {
+            qWarning() << "[LogicAnalyzer] Failed to bind UDP 9090:" << m_udpSocket->errorString();
+            m_appDescLabel->setText(QString::fromUtf8("UDP 9090 绑定失败，无法接收探针数据。\n请检查端口占用或权限。"));
         }
     }
     m_timer->start(33); 
@@ -372,18 +429,35 @@ void LogicAnalyzerView::stopMonitor() {
 }
 
 void LogicAnalyzerView::onReadyReadUdp() {
-    if(!m_udpSocket) return;
+    if(!m_udpSocket || !m_udpBindOk) return;
     while (m_udpSocket->hasPendingDatagrams()) {
         QByteArray datagram;
         datagram.resize(m_udpSocket->pendingDatagramSize());
         m_udpSocket->readDatagram(datagram.data(), datagram.size());
         
         QString msg = QString::fromUtf8(datagram);
-        QStringList parts = msg.split(':');
+        QString channel;
+        int val = 0;
+        int ownerPid = -1;
+
+        // 兼容格式1：channel:value （旧版）
+        // 兼容格式2：pid|channel:value （推荐）
+        QString payload = msg.trimmed();
+        int pipePos = payload.indexOf('|');
+        if (pipePos > 0) {
+            bool okPid = false;
+            int pidCandidate = payload.left(pipePos).toInt(&okPid);
+            if (okPid) {
+                ownerPid = pidCandidate;
+                payload = payload.mid(pipePos + 1);
+            }
+        }
+
+        QStringList parts = payload.split(':');
         if (parts.size() == 2) {
-            QString channel = parts[0].trimmed();
-            int val = parts[1].trimmed().toInt();
-            updateChannelFromProbe(channel);
+            channel = parts[0].trimmed();
+            val = parts[1].trimmed().toInt();
+            updateChannelFromProbe(channel, ownerPid);
             if(m_plotWidget) m_plotWidget->pushSample(channel, val);
         }
     }

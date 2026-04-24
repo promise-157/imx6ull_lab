@@ -1,5 +1,6 @@
 #include "MediaService.h"
 #include <QDebug>
+#include <QRandomGenerator>
 #include <QThread>
 #include <QUrl>
 #include <QVariant>
@@ -14,29 +15,22 @@ void MediaService::onInit() {}
 void MediaService::onStart() {
   EventBus::getInstance()->subscribe(
       "svc/req/music/scan", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "scanMusicDir", Qt::QueuedConnection,
-                                  Q_ARG(QString, payload.toString()));
+        scanMusicDir(payload.toString());
       });
 
   EventBus::getInstance()->subscribe(
       "svc/req/music/play_index", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "handlePlayCommand",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
+        handlePlayCommand(payload.toInt());
       });
 
   EventBus::getInstance()->subscribe(
       "svc/req/music/next", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "handleNextCommand",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
+        handleNextCommand(payload.toInt());
       });
 
   EventBus::getInstance()->subscribe(
       "svc/req/music/prev", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(this, "handlePrevCommand",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
+        handlePrevCommand(payload.toInt());
       });
 
   qInfo() << "[MediaService] Started successfully in thread:"
@@ -68,7 +62,10 @@ void MediaService::handleNextCommand(int mode) {
   if (m_playlist.isEmpty())
     return;
   if (mode == 2) { // Random
-    m_currentIndex = qrand() % m_playlist.size();
+    m_currentIndex = QRandomGenerator::global()->bounded(m_playlist.size());
+  } else if (mode == 1) { // LoopSingle
+    if (m_currentIndex < 0)
+      m_currentIndex = 0;
   } else { // LoopList or LoopSingle (as next)
     m_currentIndex = (m_currentIndex + 1) % m_playlist.size();
   }
@@ -79,7 +76,10 @@ void MediaService::handlePrevCommand(int mode) {
   if (m_playlist.isEmpty())
     return;
   if (mode == 2) { // Random
-    m_currentIndex = qrand() % m_playlist.size();
+    m_currentIndex = QRandomGenerator::global()->bounded(m_playlist.size());
+  } else if (mode == 1) { // LoopSingle
+    if (m_currentIndex < 0)
+      m_currentIndex = 0;
   } else { // LoopList or LoopSingle (as prev)
     m_currentIndex =
         (m_currentIndex - 1 + m_playlist.size()) % m_playlist.size();

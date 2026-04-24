@@ -13,5 +13,10 @@
     "Network": {
         "MqttBrokerIP": "127.0.0.1",
         "MqttPort": 1883
+    },
+    "Music": {
+        "DefaultDir": "./media",
+        "DefaultVolume": 55,
+        "DefaultPlayMode": 0
     }
 }

@@ -5,6 +5,8 @@ namespace AppBootstrap {
  * @brief 初始化音频子系统（挂载 AudioHal 和 MediaService）
  */
 void initAudioSubsystem();
+void initVideoSubsystem();
+void initHardwareSubsystem();
 
 /**
  * @brief 一键聚合加载当前 Demo 应用所需的所有子系统

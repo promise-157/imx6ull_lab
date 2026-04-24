@@ -11,45 +11,52 @@ SystemManager::~SystemManager() { stopAll(); }
 
 void SystemManager::registerModule(ILifecycleModule *module,
                                    bool requireNewThread) {
+  if (!module) {
+    qWarning() << "[SystemManager] registerModule got nullptr.";
+    return;
+  }
+
   if (m_isRunning) {
     qWarning() << "[SystemManager] Cannot register module"
                << module->moduleName() << "after startAll()!";
     return;
   }
 
-  // 转移所有权到管家，由管家同一释放
-  m_modules.append(module);
+  ManagedModule managed;
+  managed.module = module;
 
   if (requireNewThread) {
     QThread *thread = new QThread(this);
-    // 让线程名字清晰，便于Top排查
     thread->setObjectName(module->moduleName() + "_Thread");
-
-    // 关键1：绑定线程启动的信号到模块的 onStart 槽（这会在新线程里执行）
-    connect(thread, &QThread::started, module, &ILifecycleModule::onStart);
-
-    // 关键2：把对象推到新的线程空间
-    module->moveToThread(thread);
-    m_threads.append(thread);
-  } else {
-    // 如果不需要新线程，直接利用当前所在线程(一般是主线程或共享后台线程)
-    // 这个可以未来扩展
+    managed.thread = thread;
   }
+
+  // 转移所有权到管家，由管家统一释放
+  m_managedModules.append(managed);
 }
 
 void SystemManager::startAll() {
   if (m_isRunning)
     return;
 
-  // 第一步：在主线程，集体统一完成各个组件的资源静态探测或配置读取
-  for (auto mod : m_modules) {
-    qInfo() << "[SystemManager] Initializing:" << mod->moduleName();
-    mod->onInit();
+  // 第一步：统一在主线程完成 onInit，避免 moveToThread 后跨线程直接调用
+  for (const auto &entry : m_managedModules) {
+    qInfo() << "[SystemManager] Initializing:" << entry.module->moduleName();
+    entry.module->onInit();
   }
 
-  // 第二步：集体点火。所有通过moveToThread到子线程的模块，其onStart会随着线程的start并发拉起
-  for (auto th : m_threads) {
-    th->start();
+  // 第二步：根据模块配置点火
+  for (auto &entry : m_managedModules) {
+    if (entry.thread) {
+      // 注意：moveToThread 必须在对象无父对象时进行。当前模块均以 nullptr 构造。
+      entry.module->moveToThread(entry.thread);
+      connect(entry.thread, &QThread::started, entry.module,
+              &ILifecycleModule::onStart, Qt::UniqueConnection);
+      entry.thread->start();
+    } else {
+      // 无独立线程的模块直接在当前线程启动（通常是主线程）
+      entry.module->onStart();
+    }
   }
 
   m_isRunning = true;
@@ -58,28 +65,39 @@ void SystemManager::startAll() {
 }
 
 void SystemManager::stopAll() {
-  if (!m_isRunning)
+  if (m_managedModules.isEmpty())
     return;
 
-  for (auto mod : m_modules) {
-    qInfo() << "[SystemManager] Stopping:" << mod->moduleName();
-    // 这里必须用跨线程调用的方式告诉他们在自己的线程里清理资源
-    QMetaObject::invokeMethod(mod, "onStop", Qt::BlockingQueuedConnection);
+  for (auto &entry : m_managedModules) {
+    qInfo() << "[SystemManager] Stopping:" << entry.module->moduleName();
+
+    if (entry.thread) {
+      // 在模块所属线程中执行 onStop
+      QMetaObject::invokeMethod(entry.module, "onStop",
+                                Qt::BlockingQueuedConnection);
+    } else {
+      // 无独立线程模块直接同步停止
+      entry.module->onStop();
+    }
   }
 
-  for (auto th : m_threads) {
-    th->quit();
-    th->wait(2000); // 最多等两秒让其自行结束，防止死锁卡死退出
+  for (auto &entry : m_managedModules) {
+    if (!entry.thread)
+      continue;
+    entry.thread->quit();
+    entry.thread->wait(2000); // 最多等两秒让其自行结束，防止死锁卡死退出
   }
 
-  // 清理创建的线程（挂在父节点上的自己会回收，也可以明确清理）
-  qDeleteAll(m_threads);
-  m_threads.clear();
+  for (auto &entry : m_managedModules) {
+    delete entry.thread;
+    entry.thread = nullptr;
+  }
 
-  // 如果模块父节点不是本实例，或者防止泄露
-  // 由于通常在管家退出时整个app结束，可以由Qt对象树自动释放，这里手动更保险
-  qDeleteAll(m_modules);
-  m_modules.clear();
+  for (auto &entry : m_managedModules) {
+    delete entry.module;
+    entry.module = nullptr;
+  }
+  m_managedModules.clear();
 
   m_isRunning = false;
   qInfo() << "[SystemManager] All background modules shut down successfully.";

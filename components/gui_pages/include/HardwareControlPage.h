@@ -8,7 +8,6 @@
 #include <QSlider>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QTimer>
 
 class HardwareControlPage : public IAppModule {
     Q_OBJECT
@@ -18,7 +17,7 @@ public:
 
     QString appName() const override { return QString::fromUtf8("硬件外设控制"); }
     // 如果之后有统一大图标可以替换，先借用硬件监控的图标，或自带字符串
-    QString appIconPath() const override { return QString::fromUtf8(":/res/images/hardware/monitor_icon.png"); }
+    QString appIconPath() const override { return QString::fromUtf8(":/res/images/app_icons/hardware.png"); }
     
     void stopService() override;
 
@@ -30,8 +29,6 @@ private slots:
 
 private:
     void setupUI();
-    void writeSysFs(const QString &path, const QString &val);
-    QString readSysFs(const QString &path);
 
     bool m_ledState;
     bool m_buzzerState;
@@ -42,8 +39,6 @@ private:
     QLabel* m_ambientLightLabel;
     QLabel* m_proximityLabel;
     QLabel* m_imuDataLabel;
-    
-    QTimer* m_sensorTimer;
 };
 
 #endif // HardwareControlPage_H

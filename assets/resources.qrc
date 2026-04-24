@@ -3,6 +3,10 @@
         <file>res/images/hardware/close_new.png</file>
         <file>res/images/hardware/minimize_new.png</file>
         <file>res/images/hardware/monitor_icon.png</file>
+        <file>res/images/app_icons/music.png</file>
+        <file>res/images/app_icons/video.png</file>
+        <file>res/images/app_icons/monitor.png</file>
+        <file>res/images/app_icons/hardware.png</file>
         <file>res/images/music/cd.png</file>
         <file>res/images/music/close_new.png</file>
         <file>res/images/music/favorite_no.png</file>
