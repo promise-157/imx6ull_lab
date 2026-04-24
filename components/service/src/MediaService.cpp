@@ -1,11 +1,55 @@
 #include "MediaService.h"
+#include <QDebug>
+#include <QThread>
 #include <QUrl>
 #include <QVariant>
 
-MediaServiceWorker::MediaServiceWorker(QObject *parent)
-    : QObject(parent), m_currentIndex(-1) {}
+MediaService::MediaService(QObject *parent)
+    : ILifecycleModule(parent), m_currentIndex(-1) {}
 
-void MediaServiceWorker::scanMusicDir(const QString &dirPath) {
+MediaService::~MediaService() {}
+
+void MediaService::onInit() {}
+
+void MediaService::onStart() {
+  EventBus::getInstance()->subscribe(
+      "svc/req/music/scan", this, [this](const QVariant &payload) {
+        QMetaObject::invokeMethod(this, "scanMusicDir", Qt::QueuedConnection,
+                                  Q_ARG(QString, payload.toString()));
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/req/music/play_index", this, [this](const QVariant &payload) {
+        QMetaObject::invokeMethod(this, "handlePlayCommand",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, payload.toInt()));
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/req/music/next", this, [this](const QVariant &payload) {
+        QMetaObject::invokeMethod(this, "handleNextCommand",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, payload.toInt()));
+      });
+
+  EventBus::getInstance()->subscribe(
+      "svc/req/music/prev", this, [this](const QVariant &payload) {
+        QMetaObject::invokeMethod(this, "handlePrevCommand",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, payload.toInt()));
+      });
+
+  qInfo() << "[MediaService] Started successfully in thread:"
+          << QThread::currentThreadId();
+}
+
+void MediaService::onStop() {
+  // 因为 EventBus 是基于 connect 实现，模块销毁时 Qt 会自动清理相关的连接，
+  // 此处不需要显式调用 unsubscribe
+  qInfo() << "[MediaService] Stopped.";
+}
+
+void MediaService::scanMusicDir(const QString &dirPath) {
   m_currentDir = dirPath;
   QDir dir(m_currentDir);
   m_playlist = dir.entryList({"*.mp3", "*.wav"}, QDir::Files);
@@ -13,14 +57,14 @@ void MediaServiceWorker::scanMusicDir(const QString &dirPath) {
                                    QVariant::fromValue(m_playlist));
 }
 
-void MediaServiceWorker::handlePlayCommand(int index) {
+void MediaService::handlePlayCommand(int index) {
   if (index >= 0 && index < m_playlist.size()) {
     m_currentIndex = index;
     notifyPlay();
   }
 }
 
-void MediaServiceWorker::handleNextCommand(int mode) {
+void MediaService::handleNextCommand(int mode) {
   if (m_playlist.isEmpty())
     return;
   if (mode == 2) { // Random
@@ -31,7 +75,7 @@ void MediaServiceWorker::handleNextCommand(int mode) {
   notifyPlay();
 }
 
-void MediaServiceWorker::handlePrevCommand(int mode) {
+void MediaService::handlePrevCommand(int mode) {
   if (m_playlist.isEmpty())
     return;
   if (mode == 2) { // Random
@@ -43,14 +87,12 @@ void MediaServiceWorker::handlePrevCommand(int mode) {
   notifyPlay();
 }
 
-void MediaServiceWorker::togglePlayPause() {
-  // We don't keep track of playing state here, we just tell hal to toggle.
-  // Wait, let AudioHal handle pause. Here we can just toggle via hal.
-  // Actually, UI handles toggle play/pause directly with AudioHal or
+void MediaService::togglePlayPause() {
+  // UI handles toggle play/pause directly with AudioHal or
   // MediaService passes it.
 }
 
-void MediaServiceWorker::notifyPlay() {
+void MediaService::notifyPlay() {
   if (m_currentIndex < 0 || m_currentIndex >= m_playlist.size())
     return;
   QString filename = m_playlist.at(m_currentIndex);
@@ -60,52 +102,4 @@ void MediaServiceWorker::notifyPlay() {
                                    QVariant::fromValue(m_currentIndex));
   EventBus::getInstance()->publish("hal/req/audio/play",
                                    QVariant::fromValue(filePath));
-}
-
-// =======================
-
-MediaService::MediaService(QObject *parent) : QObject(parent) {
-  m_thread = new QThread(this);
-  m_worker = new MediaServiceWorker();
-  m_worker->moveToThread(m_thread);
-
-  // Map EventBus reqs to worker slots via Qt signals to cross threads safely
-  // Since EventBus invoke callbacks from whatever thread publishes,
-  // we use QMetaObject::invokeMethod.
-
-  EventBus::getInstance()->subscribe(
-      "svc/req/music/scan", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(m_worker, "scanMusicDir",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(QString, payload.toString()));
-      });
-
-  EventBus::getInstance()->subscribe(
-      "svc/req/music/play_index", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(m_worker, "handlePlayCommand",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
-      });
-
-  EventBus::getInstance()->subscribe(
-      "svc/req/music/next", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(m_worker, "handleNextCommand",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
-      });
-
-  EventBus::getInstance()->subscribe(
-      "svc/req/music/prev", this, [this](const QVariant &payload) {
-        QMetaObject::invokeMethod(m_worker, "handlePrevCommand",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, payload.toInt()));
-      });
-
-  m_thread->start();
-}
-
-MediaService::~MediaService() {
-  m_thread->quit();
-  m_thread->wait();
-  m_worker->deleteLater();
 }

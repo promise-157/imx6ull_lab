@@ -2,15 +2,21 @@
 #define MEDIA_SERVICE_H
 
 #include "EventBus.h"
+#include "ILifecycleModule.h"
 #include <QDir>
 #include <QObject>
 #include <QStringList>
-#include <QThread>
 
-class MediaServiceWorker : public QObject {
+class MediaService : public ILifecycleModule {
   Q_OBJECT
 public:
-  explicit MediaServiceWorker(QObject *parent = nullptr);
+  explicit MediaService(QObject *parent = nullptr);
+  ~MediaService();
+
+  QString moduleName() const override { return "MediaService"; }
+  void onInit() override;
+  void onStart() override;
+  void onStop() override;
 
 public slots:
   void scanMusicDir(const QString &dirPath);
@@ -25,17 +31,6 @@ private:
   int m_currentIndex;
 
   void notifyPlay();
-};
-
-class MediaService : public QObject {
-  Q_OBJECT
-public:
-  explicit MediaService(QObject *parent = nullptr);
-  ~MediaService();
-
-private:
-  QThread *m_thread;
-  MediaServiceWorker *m_worker;
 };
 
 #endif // MEDIA_SERVICE_H

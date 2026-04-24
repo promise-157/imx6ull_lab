@@ -121,6 +121,14 @@ build components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.
   OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
   OBJECT_FILE_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir/src
 
+build components/core_utils/CMakeFiles/core_utils_lib.dir/src/SystemManager.cpp.o: CXX_COMPILER__core_utils_lib ../components/core_utils/src/SystemManager.cpp || cmake_object_order_depends_target_core_utils_lib
+  DEFINES = -DQT_CORE_LIB
+  DEP_FILE = components/core_utils/CMakeFiles/core_utils_lib.dir/src/SystemManager.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Icomponents/core_utils/core_utils_lib_autogen/include -I../components/core_utils/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++
+  OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
+  OBJECT_FILE_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir/src
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target core_utils_lib
@@ -129,7 +137,7 @@ build components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.
 #############################################
 # Link the static library components/core_utils/libcore_utils_lib.a
 
-build components/core_utils/libcore_utils_lib.a: CXX_STATIC_LIBRARY_LINKER__core_utils_lib components/core_utils/CMakeFiles/core_utils_lib.dir/core_utils_lib_autogen/mocs_compilation.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/ConfigManager.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/EventBus.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.o || components/core_utils/core_utils_lib_autogen /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
+build components/core_utils/libcore_utils_lib.a: CXX_STATIC_LIBRARY_LINKER__core_utils_lib components/core_utils/CMakeFiles/core_utils_lib.dir/core_utils_lib_autogen/mocs_compilation.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/ConfigManager.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/EventBus.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/LoggerManager.cpp.o components/core_utils/CMakeFiles/core_utils_lib.dir/src/SystemManager.cpp.o || components/core_utils/core_utils_lib_autogen /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
   LANGUAGE_COMPILE_FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g
   OBJECT_DIR = components/core_utils/CMakeFiles/core_utils_lib.dir
   POST_BUILD = :
@@ -497,6 +505,14 @@ build apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/mocs_compilation.cpp.o:
   OBJECT_DIR = apps/demo/CMakeFiles/demo_app.dir
   OBJECT_FILE_DIR = apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen
 
+build apps/demo/CMakeFiles/demo_app.dir/AppBootstrap.cpp.o: CXX_COMPILER__demo_app ../apps/demo/AppBootstrap.cpp || cmake_object_order_depends_target_demo_app
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = apps/demo/CMakeFiles/demo_app.dir/AppBootstrap.cpp.o.d
+  FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g   -fPIC -std=gnu++1z
+  INCLUDES = -Iapps/demo/demo_app_autogen/include -I../components/gui_pages/include -I../components/core_utils/include -I../components/service/include -I../components/hal/include -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtWidgets -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtGui -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtCore -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimedia -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtNetwork -isystem /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/include/QtMultimediaWidgets
+  OBJECT_DIR = apps/demo/CMakeFiles/demo_app.dir
+  OBJECT_FILE_DIR = apps/demo/CMakeFiles/demo_app.dir
+
 build apps/demo/CMakeFiles/demo_app.dir/main.cpp.o: CXX_COMPILER__demo_app ../apps/demo/main.cpp || cmake_object_order_depends_target_demo_app
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
   DEP_FILE = apps/demo/CMakeFiles/demo_app.dir/main.cpp.o.d
@@ -521,7 +537,7 @@ build apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG/qrc_resource
 #############################################
 # Link the executable apps/demo/demo_app
 
-build apps/demo/demo_app: CXX_EXECUTABLE_LINKER__demo_app apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/mocs_compilation.cpp.o apps/demo/CMakeFiles/demo_app.dir/main.cpp.o apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG/qrc_resources.cpp.o | components/gui_pages/libgui_pages_lib.a components/core_utils/libcore_utils_lib.a components/service/libservice_lib.a components/hal/libhal_lib.a /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9 components/core_utils/libcore_utils_lib.a /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9 || apps/demo/demo_app_autogen components/core_utils/libcore_utils_lib.a components/gui_pages/libgui_pages_lib.a components/hal/libhal_lib.a components/service/libservice_lib.a
+build apps/demo/demo_app: CXX_EXECUTABLE_LINKER__demo_app apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/mocs_compilation.cpp.o apps/demo/CMakeFiles/demo_app.dir/AppBootstrap.cpp.o apps/demo/CMakeFiles/demo_app.dir/main.cpp.o apps/demo/CMakeFiles/demo_app.dir/demo_app_autogen/QU2567GMYG/qrc_resources.cpp.o | components/gui_pages/libgui_pages_lib.a components/core_utils/libcore_utils_lib.a components/service/libservice_lib.a components/hal/libhal_lib.a /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9 components/core_utils/libcore_utils_lib.a /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9 || apps/demo/demo_app_autogen components/core_utils/libcore_utils_lib.a components/gui_pages/libgui_pages_lib.a components/hal/libhal_lib.a components/service/libservice_lib.a
   FLAGS = -mfloat-abi=hard -mfpu=neon-vfpv4 -mcpu=cortex-a7  -g
   LINK_FLAGS = -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
   LINK_LIBRARIES = components/gui_pages/libgui_pages_lib.a  components/core_utils/libcore_utils_lib.a  components/service/libservice_lib.a  components/hal/libhal_lib.a  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5MultimediaWidgets.so.5.12.9  components/core_utils/libcore_utils_lib.a  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Widgets.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Multimedia.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Gui.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Network.so.5.12.9  /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/libQt5Core.so.5.12.9
