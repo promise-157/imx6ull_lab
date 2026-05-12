@@ -24,8 +24,6 @@
     <a href="https://github.com/promise-157/imx6ull_lab"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/promise-157/imx6ull_lab">View Demo</a>
-    &middot;
     <a href="https://github.com/promise-157/imx6ull_lab/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
     <a href="https://github.com/promise-157/imx6ull_lab/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -66,7 +64,7 @@
 <table table-layout="fixed">
   <tr>
     <td align="center" width="400">
-      <img src="images/desktop.jpg.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <img src="images/desktop.jpg" style="width:100%; height:250px; object-fit:cover;">
       <br><b>桌面演示 (desktop)</b>
     </td>
     <td align="center" width="400">
@@ -91,7 +89,7 @@
 Q：为啥不继续搞摄像头和网络了？
 A：感觉是重复工作了意义不大
 
-使用了https://github.com/Acoucou/imx6ull_project.git这个项目里的一些图片视频等资源，如果侵权请联系我删除。
+使用了  https://github.com/Acoucou/imx6ull_project.git  这个项目里的一些图片视频等资源，如果侵权请联系我删除。
 ### Built With
 
 - QT5.12.9
@@ -123,7 +121,7 @@ A：感觉是重复工作了意义不大
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-See the [open issues](https://github.com/promise-157-157/imx6ull_lab/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/promise-157/imx6ull_lab/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
