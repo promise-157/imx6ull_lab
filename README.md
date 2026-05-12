@@ -63,10 +63,13 @@
 - 板级资源管理
 
 下面是效果图：
-<img src="images/desktop.jpg.jpg" alt="desktop" width="160" height="160">
-<img src="images/music.jpg" alt="music" width="160" height="160">
-<img src="images/video.jpg" alt="video" width="160" height="160">
-<img src="images/hardwarecenter.jpg" alt="hardwarecenter" width="160" height="160">
+<p align="center">
+  <img src="images/desktop.jpg" width="240">
+  <img src="images/music.jpg" width="240">
+  <br>
+  <img src="images/video.jpg" width="240">
+  <img src="images/hardwarecenter.jpg" width="240">
+</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 碎碎念：
