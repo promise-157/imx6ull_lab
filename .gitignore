@@ -1,0 +1,27 @@
+# Ignore 3rdparty libraries and large files
+src/3rdparty/
+
+# Build directories and CMake files
+build/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+TargetDirectories.txt
+
+# Qt/C++ generated files
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.exe
+
+# Testing
+Testing/

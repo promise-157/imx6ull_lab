@@ -19,13 +19,11 @@
   <h3 align="center">promise-157</h3>
 
   <p align="center">
-    project introduce
+    基于imx6ull的qt工程
     <br />
     <a href="https://github.com/promise-157/imx6ull_lab"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/promise-157/imx6ull_lab">View Demo</a>
-    &middot;
     <a href="https://github.com/promise-157/imx6ull_lab/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
     <a href="https://github.com/promise-157/imx6ull_lab/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -47,33 +45,57 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+基于正点原子imx6ull-emmc alpha开发板和ai实现的试验性质项目，如果讨厌ai写的代码的可以不用看下去了。实现内容为：
+- ui
+- 虚拟终端含键盘
+- 音视频
+- 语音识别与录制
+- 板级资源管理
 
-
+下面是效果图：
+<table table-layout="fixed">
+  <tr>
+    <td align="center" width="400">
+      <img src="images/desktop.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>桌面演示 (desktop)</b>
+    </td>
+    <td align="center" width="400">
+      <img src="images/music.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>音乐播放 (music)</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="400">
+      <img src="images/video.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>视频播放 (video)</b>
+    </td>
+    <td align="center" width="400">
+      <img src="images/hardwarecenter.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>硬件中心 (hardwarecenter)</b>
+    </td>
+  </tr>
+</table>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+碎碎念：
+Q：为啥不继续搞摄像头和网络了？
+A：感觉是重复工作了意义不大
+
+使用了  https://github.com/Acoucou/imx6ull_project.git  这个项目里的一些图片视频等资源，如果侵权请联系我删除。
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+- QT5.12.9
+- ncnn
+- sherpa-ncnn-streaming-zipformer-zh-14M-2023-02-23
+- vscode
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -83,70 +105,26 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+1. 请查阅正点原子的官方教程，安装好交叉编译链与qt，并明确编译工具的安装路径。
+2. 对于语音识别，由于文件太大了上传不了，因此需要你重新安装编译，建议参考docs文档中AI_Sherpa_NCNN_Build_Guide，这是ai写的步骤，当时我编译器出来问题因此采用的是scripts所示的两个脚本安装，使用这两个脚本时请阅读后移动至合适的目录下运行。对于下载的模型使用则参考imx6ull_lab/src/components/service/CMakeLists.txt的配置文件。
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+1. 在板子的/home/root/model路径移植好模型文件，见/imx6ull_lab/src/3rdparty/model。
+2. 运行正点原子官方的脚本开启语音功能：文件见/imx6ull_lab/scripts/mic_in_config.sh。
+3. ps -ef找到/opt/ui/systemui进程，使用kill -9 "pid号",关闭原先运行的qt进程。
+4. 使用setsid ./your_app -platform linuxfb &
+> 本项目采用了toolchain，因此提供了一个在x86上简易查看ui设计的test工程，不过比较粗糙，感兴趣可以完善一下。如果对于怎么在vscode写qt代码有疑问欢迎提问，因为正点原子的教程貌似没有讲，我其实有写了教程在我的博客但是太粗糙就不推荐观看了。
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ROADMAP -->
-## Roadmap
 
-- [ ] gui page
-- [ ] multimedia
-- [ ] Internet connect to others
-
-
-See the [open issues](https://github.com/promise-157-157/imx6ull_lab/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/promise-157/imx6ull_lab/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
 

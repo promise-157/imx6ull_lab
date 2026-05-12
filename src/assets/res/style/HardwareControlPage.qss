@@ -1,0 +1,81 @@
+/* ============================================================== */
+/*                  HardwareControlPage 专属样式                    */
+/* ============================================================== */
+#HardwareControlPage {
+    background-color: #f0f0f5;
+}
+
+#HwTitleLabel {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e1e24;
+}
+
+#HwBtnHome {
+    background-color: #ff4757;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+#HwBtnHome:hover { background-color: #ff6b81; }
+#HwBtnHome:pressed { background-color: #ff4757; }
+
+#HwGroupBox {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #d1d1e0;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#HwGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}
+
+/* 所有的 QSlider */
+#HwBacklightSlider::groove:horizontal {
+    border: 1px solid #999999;
+    height: 15px;
+    background: #e6e6e6;
+    border-radius: 7px;
+}
+#HwBacklightSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+    border: 1px solid #5c5c5c;
+    width: 25px;
+    margin: -5px 0;
+    border-radius: 12px;
+}
+#HwBacklightSlider::sub-page:horizontal {
+    background: #1e90ff;
+    border-radius: 7px;
+}
+
+#HwSensorLabel {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+/* LED 按钮根据 isOn 属性动态切换图标 */
+#HwLedBtn[isOn="false"] {
+    border-image: url(:/res/images/hwctrl/led_off.svg);
+    background: transparent;
+}
+#HwLedBtn[isOn="true"] {
+    border-image: url(:/res/images/hwctrl/led_on.svg);
+    background: transparent;
+}
+
+/* 蜂鸣器 按钮根据 isOn 属性动态切换图标 */
+#HwBuzzerBtn[isOn="false"] {
+    border-image: url(:/res/images/hwctrl/buzzer_off.svg);
+    background: transparent;
+}
+#HwBuzzerBtn[isOn="true"] {
+    border-image: url(:/res/images/hwctrl/buzzer_on.svg);
+    background: transparent;
+}
