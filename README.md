@@ -63,13 +63,28 @@
 - 板级资源管理
 
 下面是效果图：
-<p align="center">
-  <img src="images/desktop.jpg" width="240">
-  <img src="images/music.jpg" width="240">
-  <br>
-  <img src="images/video.jpg" width="240">
-  <img src="images/hardwarecenter.jpg" width="240">
-</p>
+<table table-layout="fixed">
+  <tr>
+    <td align="center" width="400">
+      <img src="images/desktop.jpg.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>桌面演示 (desktop)</b>
+    </td>
+    <td align="center" width="400">
+      <img src="images/music.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>音乐播放 (music)</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="400">
+      <img src="images/video.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>视频播放 (video)</b>
+    </td>
+    <td align="center" width="400">
+      <img src="images/hardwarecenter.jpg" style="width:100%; height:250px; object-fit:cover;">
+      <br><b>硬件中心 (hardwarecenter)</b>
+    </td>
+  </tr>
+</table>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 碎碎念：
