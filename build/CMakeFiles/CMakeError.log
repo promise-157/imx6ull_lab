@@ -1,6 +1,6 @@
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
 Compiler: /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc 
-Build flags: -mfloat-abi=hard;-mfpu=neon-vfpv4;-mcpu=cortex-a7;
+Build flags: -mfloat-abi=hard;-mfpu=neon-vfpv4;-mcpu=cortex-a7;-mfloat-abi=hard;-mfpu=neon-vfpv4;-mcpu=cortex-a7;
 Id flags:  
 
 The output was:
@@ -20,7 +20,7 @@ collect2: error: ld returned 1 exit status
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
 Compiler: /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ 
-Build flags: -mfloat-abi=hard;-mfpu=neon-vfpv4;-mcpu=cortex-a7;
+Build flags: -mfloat-abi=hard;-mfpu=neon-vfpv4;-mcpu=cortex-a7;-mfloat-abi=hard;-mfpu=neon-vfpv4;-mcpu=cortex-a7;
 Id flags:  
 
 The output was:

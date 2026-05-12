@@ -1,0 +1,96 @@
+
+========================================================
+    i.MX6ULL 硬件资源一键全扫探雷器 - 究极进化版 (By Copilot)
+========================================================
+
+[🌟 多媒体与视觉类]
+  👉 屏幕控制器 (FrameBuffer): [mxs-lcdif]
+     [C++ 路径]: 操作 /dev/fb0 进行 mmap() 显存映射或 Qt QPA 绑定
+  👉 屏幕控制器 (FrameBuffer): []
+     [C++ 路径]: 操作 /dev/fbcon 进行 mmap() 显存映射或 Qt QPA 绑定
+  👉 摄像头输入 (V4L2): [PxP]
+     [C++ 路径]: open("/dev/video0")，使用 ioctl(VIDIOC_*) 操作
+  👉 摄像头输入 (V4L2): [mx6s-csi]
+     [C++ 路径]: open("/dev/video1")，使用 ioctl(VIDIOC_*) 操作
+  👉 声卡音频设备 (ALSA): [声卡名称 wm8960audio]
+     [C++ 路径]: 见 /dev/snd/，编程建议使用 ALSA 库 (libasound)
+
+[🌟 标准总线与高速通信类]
+  👉 硬件串口 (UART): [/dev/ttymxc0] - SoC直出终端或外挂模块
+  👉 硬件串口 (UART): [/dev/ttymxc2] - SoC直出终端或外挂模块
+  👉 网络接口 (ETH/CAN/WIFI): [can0]
+  👉 网络接口 (ETH/CAN/WIFI): [eth0]
+  👉 网络接口 (ETH/CAN/WIFI): [eth1]
+  👉 网络接口 (ETH/CAN/WIFI): [sit0]
+  👉 SPI 片选设备: [spi2.0] (如 SPI-Flash/高速ADC)
+     [C++ 路径]: /dev/spidevspi2.0 (若开启了 spidev 驱动)
+  👉 I2C 从机实体: [es8388] (总线地址 0-0011)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-0 自写 I2C 报文收发。
+  👉 I2C 从机实体: [wm8960] (总线地址 0-001a)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-0 自写 I2C 报文收发。
+  👉 I2C 从机实体: [ap3216c] (总线地址 0-001e)
+     [🔥 发现专属节点]: 厂商写了专属闭源/自定义驱动！直接 open("/dev/ap3216c") 读写！
+  👉 I2C 从机实体: [wm8960] (总线地址 1-001a)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-1 自写 I2C 报文收发。
+  👉 I2C 从机实体: [edt-ft5306] (总线地址 1-0038)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-1 自写 I2C 报文收发。
+  👉 I2C 从机实体: [ov5640] (总线地址 1-003c)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-1 自写 I2C 报文收发。
+  👉 I2C 从机实体: [gt9xx] (总线地址 1-005d)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-1 自写 I2C 报文收发。
+  👉 I2C 从机实体: [21a0000.i2c] (总线地址 i2c-0)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-i2c 自写 I2C 报文收发。
+  👉 I2C 从机实体: [21a4000.i2c] (总线地址 i2c-1)
+     [提示]: 未发现专属设备节点，需打开 /dev/i2c-i2c 自写 I2C 报文收发。
+
+[🌟 基础 IO 引脚类 (GPIO)]
+  👉 GPIO 控制器 (芯片基座):
+     - [209c000.gpio] (基址: 0, 引脚数: 32) -> 对应新版接口 /dev/gpiochip0
+     - [20ac000.gpio] (基址: 128, 引脚数: 32) -> 对应新版接口 /dev/gpiochip128
+     - [20a0000.gpio] (基址: 32, 引脚数: 32) -> 对应新版接口 /dev/gpiochip32
+     - [20a4000.gpio] (基址: 64, 引脚数: 32) -> 对应新版接口 /dev/gpiochip64
+     - [20a8000.gpio] (基址: 96, 引脚数: 32) -> 对应新版接口 /dev/gpiochip96
+     [提示]: 当前没有被 sysfs 激活导出的散装 GPIO 引脚 (需 echo 编号到 export 导出)。
+
+[🌟 交互与外设控制类]
+  👉 触摸屏/鼠标键盘: [20cc000.snvs:snvs-powerkey]
+     [C++ 路径]: 操作 /dev/input/event0 监听各类 input_event
+  👉 触摸屏/鼠标键盘: [goodix-ts]
+     [C++ 路径]: 操作 /dev/input/event1 监听各类 input_event
+  👉 触摸屏/鼠标键盘: [gpio_keys@0]
+     [C++ 路径]: 操作 /dev/input/event2 监听各类 input_event
+  👉 脉宽调节器 (PWM): [pwmchip0] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip0/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip1] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip1/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip2] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip2/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip3] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip3/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip4] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip4/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip5] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip5/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip6] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip6/ (通过 echo 写入周期与占空比)
+  👉 脉宽调节器 (PWM): [pwmchip7] (常用于电机、呼吸灯及LCD背光调光)
+     [C++ 路径]: /sys/class/pwm/pwmchip7/ (通过 echo 写入周期与占空比)
+  👉 LED 指示状态灯: [beep]
+     [C++ 路径]: /sys/class/leds/beep/brightness
+  👉 LED 指示状态灯: [mmc0::]
+     [C++ 路径]: /sys/class/leds/mmc0::/brightness
+  👉 LED 指示状态灯: [mmc1::]
+     [C++ 路径]: /sys/class/leds/mmc1::/brightness
+  👉 LED 指示状态灯: [sys-led]
+     [C++ 路径]: /sys/class/leds/sys-led/brightness
+
+[🌟 工业监测与杂项类]
+  👉 硬件环境监测 (温度/电压): [imx_thermal_zone] (/sys/class/hwmon/hwmon0)
+  👉 实时硬件时钟 (RTC): [rtc0 20cc000.snvs:snvs-r] - 2024-12-04 08:04:32
+  👉 硬件看门狗 (WatchDog): [watchdog0] -> 对应 /dev/watchdog0
+  👉 其他离散字符设备 (Misc):  [ap3216c] [apm_bios] [autofs] [cpu_dma_latency] [fuse] [hw_random] [loop-control] [memory_bandwidth] [mxc_asrc] [network_latency] [network_throughput] [pxp_device] [rfkill] [ubi_ctrl] [watchdog]
+
+========================================================
+🎯 全盘扫描完毕！
+========================================================
+你有什么想法

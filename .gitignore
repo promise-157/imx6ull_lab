@@ -1,20 +1,27 @@
-# C++ & CMake Build artifacts
+# Ignore 3rdparty libraries and large files
+src/3rdparty/
+
+# Build directories and CMake files
 build/
-cmake-build-*/
-.cmake/
 CMakeCache.txt
 CMakeFiles/
-*.ninja
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+TargetDirectories.txt
+
+# Qt/C++ generated files
 *.o
+*.obj
 *.so
+*.a
+*.dll
+*.exe
 
-# User specified ignore directories (case coverage)
-mfgtoolsfile/
-myMusic/
-mymusic/
-myVideo/
-myvideo/
-
-# IDE files
-.vscode/
-*.pro.user
+# Testing
+Testing/

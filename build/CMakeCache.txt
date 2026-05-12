@@ -199,6 +199,9 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-strip
 
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/promise/imx6ull_lab/platforms/imx6ull/cmake/imx6ulltoolchain.cmake
+
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
@@ -230,7 +233,7 @@ Qt5Network_DIR:PATH=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-
 Qt5Widgets_DIR:PATH=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/cmake/Qt5Widgets
 
 //Dependencies for the target
-core_utils_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;
+core_utils_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;general;asound;general;pthread;
 
 //Dependencies for the target
 gui_pages_lib_LIB_DEPENDS:STATIC=general;core_utils_lib;general;Qt5::Widgets;general;Qt5::Multimedia;general;Qt5::Network;general;Qt5::Core;general;Qt5::Gui;general;Qt5::MultimediaWidgets;
@@ -239,7 +242,7 @@ gui_pages_lib_LIB_DEPENDS:STATIC=general;core_utils_lib;general;Qt5::Widgets;gen
 hal_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;general;Qt5::Widgets;general;Qt5::Multimedia;general;core_utils_lib;
 
 //Dependencies for the target
-service_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;general;Qt5::Widgets;general;core_utils_lib;
+service_lib_LIB_DEPENDS:STATIC=general;/home/promise/imx6ull_lab/src/3rdparty/sherpa-ncnn/build-imx6ull/install/lib/libsherpa-ncnn-c-api.a;general;/home/promise/imx6ull_lab/src/3rdparty/sherpa-ncnn/build-imx6ull/install/lib/libsherpa-ncnn-core.a;general;/home/promise/imx6ull_lab/src/3rdparty/sherpa-ncnn/build-imx6ull/install/lib/libkaldi-native-fbank-core.a;general;/home/promise/imx6ull_lab/src/3rdparty/sherpa-ncnn/build-imx6ull/install/lib/libkissfft-float.a;general;/home/promise/imx6ull_lab/src/3rdparty/ncnn/build-imx6ull/install/lib/libncnn.a;general;Qt5::Core;general;Qt5::Widgets;general;core_utils_lib;
 
 
 ########################

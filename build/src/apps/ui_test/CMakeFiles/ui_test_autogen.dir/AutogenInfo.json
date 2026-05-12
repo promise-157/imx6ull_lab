@@ -1,0 +1,78 @@
+{
+	"BUILD_DIR" : "/home/promise/imx6ull_lab/build/src/apps/ui_test/ui_test_autogen",
+	"CMAKE_BINARY_DIR" : "/home/promise/imx6ull_lab/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/promise/imx6ull_lab/build/src/apps/ui_test",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/promise/imx6ull_lab/src/apps/ui_test",
+	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
+	"CMAKE_SOURCE_DIR" : "/home/promise/imx6ull_lab",
+	"HEADERS" : [],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/home/promise/imx6ull_lab/build/src/apps/ui_test/ui_test_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/promise/imx6ull_lab/build/src/apps/ui_test/ui_test_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_MULTIMEDIAWIDGETS_LIB",
+		"QT_MULTIMEDIA_LIB",
+		"QT_NETWORK_LIB",
+		"QT_WIDGETS_LIB"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/home/promise/imx6ull_lab/src/components/gui_pages/include",
+		"/home/promise/imx6ull_lab/src/components/core_utils/include",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include/QtCore",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include/QtGui",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include/QtMultimedia",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork",
+		"/opt/Qt5.12.9/5.12.9/gcc_64/include/QtMultimediaWidgets",
+		"/usr/include",
+		"/usr/include/c++/9",
+		"/usr/include/x86_64-linux-gnu/c++/9",
+		"/usr/include/c++/9/backward",
+		"/usr/lib/gcc/x86_64-linux-gnu/9/include",
+		"/usr/local/include",
+		"/usr/include/x86_64-linux-gnu"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : true,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/g++",
+		"-dM",
+		"-E",
+		"-c",
+		"/usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/home/promise/imx6ull_lab/build/src/apps/ui_test/ui_test_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 6,
+	"PARSE_CACHE_FILE" : "/home/promise/imx6ull_lab/build/src/apps/ui_test/CMakeFiles/ui_test_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/opt/Qt5.12.9/5.12.9/gcc_64/bin/moc",
+	"QT_UIC_EXECUTABLE" : "/opt/Qt5.12.9/5.12.9/gcc_64/bin/uic",
+	"QT_VERSION_MAJOR" : 5,
+	"SETTINGS_FILE" : "/home/promise/imx6ull_lab/build/src/apps/ui_test/CMakeFiles/ui_test_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[ "/home/promise/imx6ull_lab/src/apps/ui_test/main.cpp", "MU" ]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"VERBOSITY" : 0
+}

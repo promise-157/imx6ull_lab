@@ -1,0 +1,77 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"src/apps/demo/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "core_utils_lib::@98d481c6398a9d4c37a7"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "hal_lib::@c5c14effaf6e8935d30b"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "service_lib::@3a1152333824dc689ba7"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "gui_pages_lib::@67c885bacf9993f0362b"
+		}
+	],
+	"id" : "demo_app_autogen::@1f440f2259429733b3a6",
+	"isGeneratorProvided" : true,
+	"name" : "demo_app_autogen",
+	"paths" : 
+	{
+		"build" : "src/apps/demo",
+		"source" : "src/apps/demo"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/apps/demo/CMakeFiles/demo_app_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/apps/demo/CMakeFiles/demo_app_autogen.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

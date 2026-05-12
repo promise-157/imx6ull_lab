@@ -1,0 +1,209 @@
+/* 顶级容器白底 */
+#HardwareCenterPage {
+    background-color: #F8F9FA;
+}
+
+/* 顶部标题栏 */
+#topBar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+/* 左侧折叠菜单树 */
+QTreeWidget {
+    background-color: #FFFFFF;
+    border-right: 1px solid #EBEBEB;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    outline: none;
+}
+QTreeWidget::item {
+    height: 48px;
+    padding-left: 10px;
+    color: #4A4A4A;
+    border-bottom: 1px solid #F5F5F5;
+}
+QTreeWidget::item:selected {
+    background-color: #E8F0FE;
+    color: #005A9E;
+    font-weight: bold;
+    border-left: 4px solid #005A9E;
+}
+QTreeWidget::item:hover:!selected {
+    background-color: #F0F4F8;
+}
+
+/* 右侧内容面板的分组框 */
+QGroupBox#HwGroupBox {
+    border: 1px solid #D0D0D0;
+    border-radius: 8px;
+    margin-top: 15px;
+    background-color: #FFFFFF;
+}
+QGroupBox#HwGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px;
+    left: 10px;
+    color: #333333;
+    font-weight: bold;
+}
+
+/* 传感器数据标签 */
+QLabel#HwSensorLabel {
+    font-size: 14px;
+    color: #555555;
+    padding: 5px;
+    background-color: #F5F7FA;
+    border-radius: 4px;
+}
+
+/* 硬件控制按钮 */
+QPushButton#HwLedBtn, QPushButton#HwBuzzerBtn {
+    background-color: #ECECEC;
+    border: 2px solid #C0C0C0;
+    border-radius: 40px; /* 圆形 */
+    outline: none;
+}
+
+QPushButton#HwLedBtn[isOn="true"] {
+    background-color: #28A745; /* 绿色亮起 */
+    border: 2px solid #218838;
+}
+QPushButton#HwBuzzerBtn[isOn="true"] {
+    background-color: #DC3545; /* 红色警告 */
+    border: 2px solid #C82333;
+}
+
+/* 滑动条定制 */
+QSlider::groove:horizontal {
+    border: 1px solid #999999;
+    height: 8px; 
+    background: #EFEFEF;
+    margin: 2px 0;
+    border-radius: 4px;
+}
+QSlider::handle:horizontal {
+    background: #007BFF;
+    border: 1px solid #0056B3;
+    width: 20px;
+    margin: -8px 0; 
+    border-radius: 10px;
+}
+
+/* TabWidget 样式 */
+QTabWidget::pane { 
+    border: 1px solid #DFDFDF;
+    border-radius: 6px;
+    background: #FFFFFF;
+    top: -1px; /* 消除双线 */
+}
+QTabBar::tab {
+    background: #F0F0F0;
+    border: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 10px 20px;
+    min-width: 80px;
+    color: #555;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+}
+QTabBar::tab:selected {
+    background: #FFFFFF;
+    border-bottom-color: #FFFFFF; /* 融合面板 */
+    color: #005A9E;
+    font-weight: bold;
+}
+QTabBar::tab:hover:!selected {
+    background: #EAEAEA;
+}
+
+/* ============== 新增 UART 专属样式 & 提取的硬编码样式 ============== */
+#topBar {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+#topTitleLabel {
+    color: #333333;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+QPushButton#topCloseBtn {
+    border-image: url(:/res/images/hardware/close_new.png);
+    background: transparent;
+}
+QPushButton#topCloseBtn:hover {
+    background-color: #ff4d4d;
+    border-radius: 10px;
+}
+
+QPushButton#topMinBtn {
+    border-image: url(:/res/images/hardware/minimize_new.png);
+    background: transparent;
+}
+QPushButton#topMinBtn:hover {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+/* 串口控制面板样式 */
+QComboBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 10px;
+    min-height: 24px;
+    background: white;
+}
+QComboBox::drop-down {
+    border-left: 1px solid #ccc;
+    width: 20px;
+}
+
+QPushButton#UartActionBtn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 15px;
+    font-weight: bold;
+}
+QPushButton#UartActionBtn[isOpened="true"] {
+    background-color: #DC3545;
+}
+QPushButton#UartActionBtn:hover {
+    background-color: #0056B3;
+}
+QPushButton#UartActionBtn[isOpened="true"]:hover {
+    background-color: #C82333;
+}
+
+QTextBrowser#UartRxBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    font-family: monospace;
+    padding: 5px;
+}
+
+QLineEdit#UartTxBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+QPushButton#UartSendBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+QPushButton#UartSendBtn:hover {
+    background-color: #218838;
+}

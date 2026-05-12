@@ -1,0 +1,65 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"src/components/gui_pages/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "core_utils_lib::@98d481c6398a9d4c37a7"
+		}
+	],
+	"id" : "gui_pages_lib_autogen::@67c885bacf9993f0362b",
+	"isGeneratorProvided" : true,
+	"name" : "gui_pages_lib_autogen",
+	"paths" : 
+	{
+		"build" : "src/components/gui_pages",
+		"source" : "src/components/gui_pages"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/components/gui_pages/CMakeFiles/gui_pages_lib_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/src/components/gui_pages/CMakeFiles/gui_pages_lib_autogen.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}
